@@ -90,6 +90,8 @@ public class GameStateTests extends TestCase {
 			game.incrementMoveNumber();
 		}
 		
+		game.makeCompleteMoveCycle(48);
+		
 		System.out.println("final movenumber = " + game.moveNumber());
 		System.out.println(returnPrintableBoard("\n"));
 		
