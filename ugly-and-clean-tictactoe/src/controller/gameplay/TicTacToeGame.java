@@ -105,12 +105,10 @@ public class TicTacToeGame {
 	}
 
 	private boolean theyWonTheGame() {
-		System.out.println("They won = " + wonTheGame(Board.THEIR_PLAYER_MARK, getWinningSize()));
 		return wonTheGame(Board.THEIR_PLAYER_MARK, getWinningSize());
 	}
 
 	private boolean weWonTheGame() {
-		System.out.println("We won = " + wonTheGame(Board.THEIR_PLAYER_MARK, getWinningSize()));
 		return wonTheGame(Board.OUR_PLAYER_MARK, getWinningSize());
 	}
 	
