@@ -70,14 +70,6 @@ public class TicTacToeGame {
 	}
 
 	public void updateGameState() {
-		// TODO: we should be able to do if/else's here, but we get test
-		// failures.
-		/*
-		 * Might have found a bug - if you change the sequential if's to a
-		 * series of if/else blocks (which ought to be equivalent), then
-		 * GameStateTests.isDraw() fails - it wins when it shouldn't. Perhaps
-		 * it's marking both as a win and as a draw?
-		 */
 		if (weWonTheGame()) {
 			gameState.setWeWon();
 			view.weWonGame();

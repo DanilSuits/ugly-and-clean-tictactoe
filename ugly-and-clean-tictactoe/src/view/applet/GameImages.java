@@ -49,7 +49,7 @@ public class GameImages {
 		try {
 			tracker.waitForAll();
 		} catch (InterruptedException e) {
-			// TODO: would want to inform the user in a friendlier way than an
+			// TODO: might want to inform the user in a friendlier way than an
 			// exception.
 			throw new RuntimeException(
 					"interrupted exception while loading images");

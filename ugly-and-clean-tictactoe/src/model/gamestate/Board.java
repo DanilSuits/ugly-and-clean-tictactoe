@@ -44,7 +44,6 @@ public class Board {
 	private int[][] boardArray;
 	private int tempBoardArrayForDimensionConversions[][];
 
-	// TODO: refactor these to be enums
 	public static final int OUR_PLAYER_MARK = 1;
 	public static final int THEIR_PLAYER_MARK = 2;
 
