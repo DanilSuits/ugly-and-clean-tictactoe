@@ -66,7 +66,7 @@ public class PatrickStrategy implements IStrategy {
 		return moveGroup;
 	}
 
-	MoveGroup gatherTesseraMoves(MoveGroup moveGroup) {
+	private MoveGroup gatherTesseraMoves(MoveGroup moveGroup) {
 		gatherTriaBlockingMoves(moveGroup);
 		gatherTesseraGapBlockingMoves(moveGroup);
 		gatherTriaCappingMoves(moveGroup);
@@ -75,7 +75,7 @@ public class PatrickStrategy implements IStrategy {
 		return moveGroup;
 	}
 
-	MoveGroup gatherTriaMoves(MoveGroup moveGroup) {
+	private MoveGroup gatherTriaMoves(MoveGroup moveGroup) {
 		gatherTriaGapBlockingMoves(moveGroup);
 		gatherPairBlockingMoves(moveGroup);
 		gatherTriaGapFillingMoves(moveGroup);
@@ -84,7 +84,7 @@ public class PatrickStrategy implements IStrategy {
 		return moveGroup;
 	}
 
-	MoveGroup gatherLowerPriorityMoves(MoveGroup moveGroup) {
+	private MoveGroup gatherLowerPriorityMoves(MoveGroup moveGroup) {
 		gatherShadowCornerMoves(moveGroup);
 		findRandomMidBoardMove(moveGroup);
 		findRandomOpenPosition(moveGroup);
