@@ -15,7 +15,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	private BigDecimal oldGamePercentage;
 	private BigDecimal drawPercentage;
 	private int averageMovesPerGame;
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -26,23 +26,26 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		moveNumberTotals = 0;
 	}
 
-	//TODO: Need board-comparison utility between moves, to ensure that only one place changed! 
+	// TODO: Need board-comparison utility between moves, to ensure that only
+	// one place changed!
 	public void testNewGameKicksOldGamesButt() throws Exception {
 		reporting = false;
 		int totalGamesPlayed = 500;
-		
+
 		long startTime = System.currentTimeMillis();
-		
+
 		for (int i = 0; i < totalGamesPlayed; i++) {
 			playNewGameAgainstOldGame();
-			if (reporting) System.out.println("************************************************ STARTING OVER ***********************************************");
+			if (reporting)
+				System.out
+						.println("************************************************ STARTING OVER ***********************************************");
 			oldGame = null;
 			oldGame = new LegacyGame();
 			newGame = null;
 			newGame = new TicTacToeGame(new PatrickStrategy(), new StubView());
 		}
 		reportResults(totalGamesPlayed, startTime);
-		
+
 		assertTrue(averageMovesPerGame > 15);
 		assertTrue(newGamePercentage.floatValue() > 45);
 		assertTrue(oldGamePercentage.floatValue() < 10);
@@ -54,12 +57,13 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		oldGame.moveNumber++;
 		int oldGamePosition = 0;
 
-		while ((oldGame.gameState < 2) && (theMaximumNumberOfMovesHasNotBeenTaken())) {
+		while ((oldGame.gameState < 2)
+				&& (theMaximumNumberOfMovesHasNotBeenTaken())) {
 			oldGame.moveNumber++;
 			newGamePosition = newGameMakesMove(newGamePosition, oldGamePosition);
 			oldGamePosition = oldGameMakesMove(newGamePosition, oldGamePosition);
 		}
-		
+
 		determineWinner();
 	}
 
@@ -68,19 +72,24 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		long durationInSeconds = (endTime - startTime) / 1000;
 		Long longMinutes = durationInSeconds / 60;
 		int minutes = longMinutes.intValue();
-		int secondsRemainder = new Long(durationInSeconds % 60).intValue(); 
-		
+		int secondsRemainder = new Long(durationInSeconds % 60).intValue();
+
 		System.out.println();
-		System.out.println("Total duration = " + minutes + " minutes and " + secondsRemainder + " seconds.");
+		System.out.println("Total duration = " + minutes + " minutes and "
+				+ secondsRemainder + " seconds.");
 		System.out.println("Games played = " + totalGamesPlayed);
 		newGamePercentage = getPercentageOfTime(newGameTotal, totalGamesPlayed);
-		oldGamePercentage = getPercentageOfTime(oldGameWinTotal, totalGamesPlayed);
+		oldGamePercentage = getPercentageOfTime(oldGameWinTotal,
+				totalGamesPlayed);
 		drawPercentage = getPercentageOfTime(drawTotal, totalGamesPlayed);
-		averageMovesPerGame = moveNumberTotals/totalGamesPlayed;
+		averageMovesPerGame = moveNumberTotals / totalGamesPlayed;
 		System.out.println("Average moves per game = " + averageMovesPerGame);
-		System.out.println("New Game won " + newGameTotal + " times, or " + newGamePercentage + "%");
-		System.out.println("Old Game won " + oldGameWinTotal + " times, or " + oldGamePercentage + "%");
-		System.out.println("Nobody won " + drawTotal + "  times, or " + drawPercentage + "%");
+		System.out.println("New Game won " + newGameTotal + " times, or "
+				+ newGamePercentage + "%");
+		System.out.println("Old Game won " + oldGameWinTotal + " times, or "
+				+ oldGamePercentage + "%");
+		System.out.println("Nobody won " + drawTotal + "  times, or "
+				+ drawPercentage + "%");
 	}
 
 	private BigDecimal getPercentageOfTime(int total, int totalGamesPlayed) {
@@ -89,26 +98,35 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		Float percentageFloat = (totalFloat / gamesPlayedTotalFloat) * 100;
 		BigDecimal percentage = new BigDecimal(percentageFloat);
 		percentage = percentage.setScale(2, BigDecimal.ROUND_UP);
-		
+
 		return percentage;
 	}
 
 	private void determineWinner() {
 		String winner = "Nobody";
-		if (oldGame.gameState == 2) winner = "New Game";
-		if (oldGame.gameState == 3) winner = "Old Game";
-		
-		if (winner == "Nobody") drawTotal++;
+		if (oldGame.gameState == 2)
+			winner = "New Game";
+		if (oldGame.gameState == 3)
+			winner = "Old Game";
+
+		if (winner == "Nobody")
+			drawTotal++;
 		moveNumberTotals += oldGame.moveNumber;
 
-		System.out.println(winner + " wins in " + oldGame.moveNumber + " moves.");
-		if (reporting) System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
+		System.out.println(winner + " wins in " + oldGame.moveNumber
+				+ " moves.");
+		if (reporting)
+			System.out.println(oldGame
+					.returnPrintableBoard(LegacyGame.CR_CHARACTER));
 	}
 
 	private int oldGameMakesMove(int newGamePosition, int oldGamePosition) {
-		if (!newGameWon())oldGamePosition = oldGameMakesAMove(newGamePosition);
-		if (reporting) System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
-		
+		if (!newGameWon())
+			oldGamePosition = oldGameMakesAMove(newGamePosition);
+		if (reporting)
+			System.out.println(oldGame
+					.returnPrintableBoard(LegacyGame.CR_CHARACTER));
+
 		if (oldGameWon()) {
 			setGameStateToOldGameWon();
 		}
@@ -119,14 +137,16 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		if (!oldGameWon()) {
 			newGamePosition = newGameMakesAMove(oldGamePosition);
 		}
-		if (reporting) System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
-		
+		if (reporting)
+			System.out.println(oldGame
+					.returnPrintableBoard(LegacyGame.CR_CHARACTER));
+
 		if (newGameWon()) {
 			setGameStateToNewGameWon();
 		}
 		return newGamePosition;
 	}
-	
+
 	private int oldGameMakesAMove(int playerPosition) {
 		int x = (playerPosition % Board.MAX_COLUMNS);
 		int y = (playerPosition - x) / Board.MAX_ROWS;
@@ -139,9 +159,9 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	private int newGameMakesAMove(int computerPosition) {
 		newGame.setBoard(oldGame.gameBoard[0]);
 		int position = newGame.makeMove(reporting);
-	
+
 		takePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
-		
+
 		return position;
 	}
 

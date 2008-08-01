@@ -20,7 +20,7 @@ public class Move {
 	public int getScore() {
 		return score.getScore();
 	}
-	
+
 	public String getMessage() {
 		return message;
 	}

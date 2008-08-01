@@ -12,7 +12,7 @@ import model.gamestate.Board;
 
 public class GameImages {
 	private MediaTracker tracker;
-	
+
 	private Image xMark;
 	private Image oMark;
 	private Image filledOMark;
@@ -21,12 +21,12 @@ public class GameImages {
 	private Image losingImage;
 	private Image yourTurnImage;
 	private Image newGameImage;
-	
+
 	public GameImages(Applet applet) {
 		tracker = new MediaTracker(applet);
 		URL codeBaseUrl = applet.getCodeBase();
-		
-		xMark = applet.getImage(codeBaseUrl, "xMark.jpg"); 
+
+		xMark = applet.getImage(codeBaseUrl, "xMark.jpg");
 		oMark = applet.getImage(codeBaseUrl, "oMark.jpg");
 		filledOMark = applet.getImage(codeBaseUrl, "oMarkFilled.jpg");
 		emptySquare = applet.getImage(codeBaseUrl, "emptySquare.jpg");
@@ -34,7 +34,7 @@ public class GameImages {
 		losingImage = applet.getImage(codeBaseUrl, "lose.jpg");
 		yourTurnImage = applet.getImage(codeBaseUrl, "yourTurn.jpg");
 		newGameImage = applet.getImage(codeBaseUrl, "newgame.jpg");
-		
+
 		tracker.addImage(xMark, 0);
 		tracker.addImage(oMark, 0);
 		tracker.addImage(filledOMark, 0);
@@ -44,33 +44,36 @@ public class GameImages {
 		tracker.addImage(yourTurnImage, 0);
 		tracker.addImage(newGameImage, 0);
 	}
-	
+
 	public void awaitImageLoad() {
 		try {
 			tracker.waitForAll();
 		} catch (InterruptedException e) {
-			// TODO: would want to inform the user in a friendlier way than an exception.
-			throw new RuntimeException("interrupted exception while loading images");
+			// TODO: would want to inform the user in a friendlier way than an
+			// exception.
+			throw new RuntimeException(
+					"interrupted exception while loading images");
 		}
 	}
-	
+
 	public Image getImageForPlayerMark(int playerMark) {
 		Image image;
-		
-		switch(playerMark) {
+
+		switch (playerMark) {
 		case Board.OUR_PLAYER_MARK:
-			// NOTE: the view starts with a filled O, then changes it to a non-filled O with a timer
+			// NOTE: the view starts with a filled O, then changes it to a
+			// non-filled O with a timer
 			image = filledOMark;
 			break;
-			
+
 		case Board.THEIR_PLAYER_MARK:
 			image = xMark;
 			break;
-			
+
 		default:
-			image = emptySquare;	
+			image = emptySquare;
 		}
-		
+
 		return image;
 	}
 

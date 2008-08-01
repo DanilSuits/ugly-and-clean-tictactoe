@@ -1,6 +1,5 @@
 package model.patterns;
 
-
 public interface ISeries {
 
 	public void add(int position);

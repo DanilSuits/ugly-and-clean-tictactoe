@@ -8,33 +8,25 @@ import view.applet.GameView;
 
 public class TicTacToeGame {
 	private SeriesSize winningSize = SeriesSize.FIVE;
-	
+
 	private Board board;
 	private GameState gameState;
 	private IStrategy strategy;
 
 	private GameView view;
-	
+
 	public static final int MAX_NUMBER_OF_MOVES = 48;
-	
-	public enum MoveScore { TEN(10), 
-							NINE(9), 
-							EIGHT(8), 
-							SEVEN(7), 
-							SIX(6), 
-							FIVE(5), 
-							FOUR(4), 
-							THREE(3), 
-							TWO(2), 
-							ONE(1), 
-							ZERO(0), 
-							NONE(-1);
-							
+
+	public enum MoveScore {
+		TEN(10), NINE(9), EIGHT(8), SEVEN(7), SIX(6), FIVE(5), FOUR(4), THREE(3), TWO(
+				2), ONE(1), ZERO(0), NONE(-1);
+
 		private final int score;
-		private MoveScore (int score) {
+
+		private MoveScore(int score) {
 			this.score = score;
 		}
-		
+
 		public int getScore() {
 			return score;
 		}
@@ -45,32 +37,32 @@ public class TicTacToeGame {
 		this.view = view;
 		startNewGame();
 	}
-	
+
 	public void startNewGame() {
-		this.strategy = strategy.gimmeANewOne();
+		this.strategy = strategy.newInstance();
 		gameState = new GameState();
 		board = strategy.getBoard();
 		view.restartGame();
 	}
 
 	public void makeCompleteMoveCycle(int playerPosition) {
-		incrementMoveNumber(); 
+		incrementMoveNumber();
 		markTheirMove(playerPosition);
 		makeOurMove();
 		updateGameState();
 	}
-	
+
 	public void markTheirMove(int playerMove) {
-		markMove(playerMove, Board.THEIR_PLAYER_MARK); 
+		markMove(playerMove, Board.THEIR_PLAYER_MARK);
 	}
 
 	public void makeOurMove() {
 		if (noWinnerYet()) {
 			int position = makeMove(true);
-			markMove(position, Board.OUR_PLAYER_MARK); 
+			markMove(position, Board.OUR_PLAYER_MARK);
 		}
 	}
-	
+
 	public int makeMove(boolean reporting) {
 		int movePosition = strategy.makeMove(reporting);
 		gameState.setLastMove(movePosition);
@@ -78,11 +70,13 @@ public class TicTacToeGame {
 	}
 
 	public void updateGameState() {
-		// TODO: we should be able to do if/else's here, but we get test failures.
+		// TODO: we should be able to do if/else's here, but we get test
+		// failures.
 		/*
-		 * Might have found a bug - if you change the sequential 
-		 * if's to a series of if/else blocks (which ought to be equivalent), then GameStateTests.isDraw() fails - it wins when it shouldn't.  
-		 * Perhaps it's marking both as a win and as a draw?
+		 * Might have found a bug - if you change the sequential if's to a
+		 * series of if/else blocks (which ought to be equivalent), then
+		 * GameStateTests.isDraw() fails - it wins when it shouldn't. Perhaps
+		 * it's marking both as a win and as a draw?
 		 */
 		if (weWonTheGame()) {
 			gameState.setWeWon();
@@ -101,7 +95,7 @@ public class TicTacToeGame {
 	}
 
 	private boolean isDraw() {
-		return ( moveNumber() > MAX_NUMBER_OF_MOVES) ;
+		return (moveNumber() > MAX_NUMBER_OF_MOVES);
 	}
 
 	private boolean theyWonTheGame() {
@@ -111,7 +105,7 @@ public class TicTacToeGame {
 	private boolean weWonTheGame() {
 		return wonTheGame(Board.OUR_PLAYER_MARK, getWinningSize());
 	}
-	
+
 	public boolean noWinnerYet() {
 		return (!theyWonTheGame() && (!weWonTheGame()));
 	}
@@ -126,7 +120,7 @@ public class TicTacToeGame {
 		board.setPosition(row, column, playerMark);
 		view.drawMark(row, column, playerMark);
 	}
-	
+
 	public void setBoard(int[] incomingBoardArray) {
 		board.setBoardArray(incomingBoardArray);
 	}
@@ -150,6 +144,7 @@ public class TicTacToeGame {
 	public boolean positionIsAvailable(int row, int column) {
 		return board.positionIsEmpty(row, column);
 	}
+
 	public boolean weHaveAWinner() {
 		return (!noWinnerYet());
 	}
@@ -177,7 +172,7 @@ public class TicTacToeGame {
 	public GameState getGameState() {
 		return gameState;
 	}
-	
+
 	public SeriesSize getWinningSize() {
 		return winningSize;
 	}

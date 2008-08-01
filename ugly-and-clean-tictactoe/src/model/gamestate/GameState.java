@@ -1,16 +1,16 @@
 package model.gamestate;
 
 public class GameState {
-	
+
 	public static final int THEY_WON = 2;
 	public static final int WE_WON = 3;
 	public static final int IN_PLAY = 0;
 	public static final int DRAW = 4;
-	
+
 	private int moveNumber;
 	private int state;
 	private int lastMove;
-	
+
 	public GameState() {
 		setInPlay();
 		moveNumber = 0;
@@ -57,11 +57,11 @@ public class GameState {
 	}
 
 	public boolean weWon() {
-		return state == WE_WON; 
+		return state == WE_WON;
 	}
 
 	public boolean justStarted() {
-		 return moveNumber() == 0;
+		return moveNumber() == 0;
 	}
 
 	public void setDraw() {

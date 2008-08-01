@@ -2,13 +2,12 @@ package model.patterns;
 
 import java.util.ArrayList;
 
-
 public class Series implements ISeries {
-	
+
 	ArrayList<Integer> seriesList;
 	int startingBlockingPosition;
 	int endingBlockingPosition;
-	
+
 	public Series() {
 		seriesList = new ArrayList<Integer>();
 	}
@@ -40,13 +39,13 @@ public class Series implements ISeries {
 	public int getStartingBlockingPosition() {
 		return startingBlockingPosition;
 	}
-	
+
 	public String toString() {
 		String listString = "";
 		for (int i = 0; i < seriesList.size(); i++) {
 			listString += seriesList.get(i) + " ";
 		}
-		
+
 		return listString;
 	}
 

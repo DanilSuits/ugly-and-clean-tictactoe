@@ -21,39 +21,53 @@ public abstract class BaseSeriesFinder {
 
 	public SeriesGroup getAllSeriesOfSize(SeriesSize size, int playerMark) {
 		allSeriesFound = new SeriesGroup(board);
-		
+
 		for (int listGroupIndex = 0; listGroupIndex < listGroup.size(); listGroupIndex++) {
 			IndexList currentIndexList = listGroup.get(listGroupIndex);
-			addAllQualifyingSeriesInThisIndexList(size, playerMark, currentIndexList);
+			addAllQualifyingSeriesInThisIndexList(size, playerMark,
+					currentIndexList);
 		}
-		
+
 		return allSeriesFound;
 	}
 
-	private void addAllQualifyingSeriesInThisIndexList(SeriesSize size, int playerMark, IndexList currentIndexList) {
+	private void addAllQualifyingSeriesInThisIndexList(SeriesSize size,
+			int playerMark, IndexList currentIndexList) {
 		ISeries currentSeries;
-		currentSeries = searchIndexListForSeriesOfSize(currentIndexList, size, playerMark);
-		allSeriesFound = addQualifyingSeries(playerMark, currentSeries, currentIndexList);
+		currentSeries = searchIndexListForSeriesOfSize(currentIndexList, size,
+				playerMark);
+		allSeriesFound = addQualifyingSeries(playerMark, currentSeries,
+				currentIndexList);
 	}
-	
 
-	public SeriesGroup addQualifyingSeries(int playerMark, ISeries currentSeries, IndexList currentIndexList) {
+	public SeriesGroup addQualifyingSeries(int playerMark,
+			ISeries currentSeries, IndexList currentIndexList) {
 		if (currentSeries.size() != 0) {
 			addSeriesWithPenteRoom(playerMark, currentSeries, currentIndexList);
 		}
-		
+
 		return allSeriesFound;
 	}
 
-	private void addSeriesWithPenteRoom(int playerMark, ISeries currentSeries, IndexList currentIndexList) {
-		if (penteRoomVerifier.hasPenteRoom(currentSeries, currentIndexList, playerMark)) {
+	private void addSeriesWithPenteRoom(int playerMark, ISeries currentSeries,
+			IndexList currentIndexList) {
+		if (penteRoomVerifier.hasPenteRoom(currentSeries, currentIndexList,
+				playerMark)) {
 			allSeriesFound.add(currentSeries);
-			currentSeries = addBlockingPositionsTo(currentSeries, currentIndexList);
+			currentSeries = addBlockingPositionsTo(currentSeries,
+					currentIndexList);
 		}
 	}
-	
-	protected abstract ISeries searchIndexListForSeriesOfSize(IndexList currentIndexList, SeriesSize size, int playerMark);
-	protected abstract ISeries addBlockingPositionsTo(ISeries currentSeries, IndexList currentIndexList);
-	protected abstract int getBlockingPositionAfter(int lastSeriesPositionListIndex, IndexList currentList);
-	protected abstract int getBlockingPositionBefore(int startingPositionListIndex, IndexList currentList);
+
+	protected abstract ISeries searchIndexListForSeriesOfSize(
+			IndexList currentIndexList, SeriesSize size, int playerMark);
+
+	protected abstract ISeries addBlockingPositionsTo(ISeries currentSeries,
+			IndexList currentIndexList);
+
+	protected abstract int getBlockingPositionAfter(
+			int lastSeriesPositionListIndex, IndexList currentList);
+
+	protected abstract int getBlockingPositionBefore(
+			int startingPositionListIndex, IndexList currentList);
 }

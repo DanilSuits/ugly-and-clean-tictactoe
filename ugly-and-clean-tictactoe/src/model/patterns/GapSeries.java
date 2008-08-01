@@ -1,21 +1,23 @@
 package model.patterns;
+
 import model.gamestate.Board.SeriesSize;
 
 public class GapSeries extends Series implements ISeries {
 	private IndexList emptyList;
-	
+
 	public GapSeries() {
 		super();
 		emptyList = new IndexList();
 	}
-	
+
 	public int getGap(int i) {
 		return emptyList.get(i);
 	}
-	
+
 	public void setBlockingPositionsDependingOnNumberOfEmptySpaces() {
-		if (weHaveNoEmptySpaces()) return;
-		
+		if (weHaveNoEmptySpaces())
+			return;
+
 		if (weOnlyHaveOneEmptySpace()) {
 			setBothBlockingPositionsToSameEmptySpace();
 		} else {

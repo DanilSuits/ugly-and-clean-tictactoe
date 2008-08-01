@@ -2,7 +2,6 @@ package model.patterns;
 
 import java.util.ArrayList;
 
-
 public class IndexListGroup {
 	private ArrayList<IndexList> group;
 
@@ -16,7 +15,7 @@ public class IndexListGroup {
 
 	public void add(IndexList list) {
 		group.add(list);
-		
+
 	}
 
 	public int size() {

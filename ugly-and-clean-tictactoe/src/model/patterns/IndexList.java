@@ -20,14 +20,14 @@ public class IndexList {
 	public boolean contains(int position) {
 		return indexList.contains(position);
 	}
-	
+
 	public String toString() {
 		String listString = "";
-		
+
 		for (int i = 0; i < indexList.size(); i++) {
 			listString += indexList.get(i) + " ";
 		}
-		
+
 		return listString;
 	}
 

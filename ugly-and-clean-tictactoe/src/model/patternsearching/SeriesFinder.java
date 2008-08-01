@@ -14,39 +14,42 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 
 	public SeriesFinder(Board board) {
 		this.board = board;
-		
+
 		IndexListFactory factory = new IndexListFactory();
 		penteRoomVerifier = new PenteRoomVerifier(board);
 		listGroup = factory.getAllIndexLists();
 	}
-	
-	protected ISeries searchIndexListForSeriesOfSize(IndexList currentIndexList, SeriesSize expectedSize, int playerMark) {
+
+	protected ISeries searchIndexListForSeriesOfSize(
+			IndexList currentIndexList, SeriesSize expectedSize, int playerMark) {
 		resetSeriesFound();
 		this.playerMark = playerMark;
-		
+
 		for (int i = 0; i < currentIndexList.size(); i++) {
 			int position = currentIndexList.get(i);
 			int positionContents = board.getPosition(position);
-			
+
 			if (thisPositionIsPartOfSeries(positionContents)) {
 				seriesFound.add(position);
 			}
 
-			if (weFoundLastPositionInExpectedSeries(expectedSize, positionContents)) {
+			if (weFoundLastPositionInExpectedSeries(expectedSize,
+					positionContents)) {
 				break;
 			}
 		}
-		
+
 		if (ourSeriesSoFarIsNotBigEnough(expectedSize, seriesFound)) {
 			resetSeriesFound();
 		}
-		
+
 		return seriesFound;
 	}
 
-	private boolean weFoundLastPositionInExpectedSeries(SeriesSize expectedSize, int positionContents) {
+	private boolean weFoundLastPositionInExpectedSeries(
+			SeriesSize expectedSize, int positionContents) {
 		boolean foundSeries = false;
-		
+
 		if (!thisPositionIsPartOfSeries(positionContents)) {
 			if (ourSeriesSoFarIsBigEnough(expectedSize, seriesFound)) {
 				foundSeries = true;
@@ -54,7 +57,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 				resetSeriesFound();
 			}
 		}
-		
+
 		return foundSeries;
 	}
 
@@ -62,11 +65,13 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		seriesFound = new Series();
 	}
 
-	private boolean ourSeriesSoFarIsNotBigEnough(SeriesSize expectedSize, ISeries seriesFound) {
+	private boolean ourSeriesSoFarIsNotBigEnough(SeriesSize expectedSize,
+			ISeries seriesFound) {
 		return seriesFound.size() < expectedSize.getSize();
 	}
 
-	private boolean ourSeriesSoFarIsBigEnough(SeriesSize expectedSize, ISeries seriesFound) {
+	private boolean ourSeriesSoFarIsBigEnough(SeriesSize expectedSize,
+			ISeries seriesFound) {
 		return seriesFound.size() >= expectedSize.getSize();
 	}
 
@@ -74,24 +79,30 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		return positionContents == playerMark;
 	}
 
-	protected ISeries addBlockingPositionsTo(ISeries currentSeries, IndexList currentList) {
-		int startingPositionListIndex = currentList.getIndexFor(currentSeries.get(0));
-		int lastSeriesPositionListIndex = currentList.getIndexFor(currentSeries.get(currentSeries.size() -1));
-		
-		int startingBlockingPosition = getBlockingPositionBefore(startingPositionListIndex, currentList);
-		int endingBlockingPosition = getBlockingPositionAfter(lastSeriesPositionListIndex, currentList);
-		
+	protected ISeries addBlockingPositionsTo(ISeries currentSeries,
+			IndexList currentList) {
+		int startingPositionListIndex = currentList.getIndexFor(currentSeries
+				.get(0));
+		int lastSeriesPositionListIndex = currentList.getIndexFor(currentSeries
+				.get(currentSeries.size() - 1));
+
+		int startingBlockingPosition = getBlockingPositionBefore(
+				startingPositionListIndex, currentList);
+		int endingBlockingPosition = getBlockingPositionAfter(
+				lastSeriesPositionListIndex, currentList);
+
 		currentSeries.setStartingBlockingPosition(startingBlockingPosition);
 		currentSeries.setEndingBlockingPosition(endingBlockingPosition);
-		
+
 		return currentSeries;
 	}
 
 	protected int getBlockingPositionAfter(int index, IndexList currentList) {
-		if (index < currentList.size()-1) {
+		if (index < currentList.size() - 1) {
 			int position = currentList.get(index + 1);
-			
-			if (board.getPosition(position) == Board.EMPTY) return position;
+
+			if (board.getPosition(position) == Board.EMPTY)
+				return position;
 		}
 		return -1;
 	}
@@ -99,24 +110,27 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	protected int getBlockingPositionBefore(int index, IndexList currentList) {
 		if (index > 0) {
 			int position = currentList.get(index - 1);
-			
-			if (board.getPosition(position) == Board.EMPTY) return position;
+
+			if (board.getPosition(position) == Board.EMPTY)
+				return position;
 		}
 		return -1;
 	}
-	
-	public int getBestBlockingPositionForSeriesOfSize(SeriesSize size, int playerMark) {
+
+	public int getBestBlockingPositionForSeriesOfSize(SeriesSize size,
+			int playerMark) {
 		SeriesGroup allSeriesOfSize = getAllSeriesOfSize(size, playerMark);
 		bestPosition = -1;
 		alternatePosition = -1;
-		
+
 		for (int i = 0; i < allSeriesOfSize.size(); i++) {
 			ISeries series = allSeriesOfSize.get(i);
-			
+
 			findBestBlockingPositions(series);
-			if (foundGoodBlockingPosition()) return bestPosition;
+			if (foundGoodBlockingPosition())
+				return bestPosition;
 		}
-		
+
 		return bestPosition;
 	}
 
@@ -128,7 +142,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		if (seriesHasOpenStartingBlockingPosition(series)) {
 			bestPosition = series.getStartingBlockingPosition();
 			findAlternateBlockingPositionIfPossible(series);
-			
+
 		} else if (seriesHasOpenEndingBlockingPosition(series)) {
 			bestPosition = series.getEndingBlockingPosition();
 		}
@@ -147,7 +161,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	private boolean seriesHasOpenStartingBlockingPosition(ISeries series) {
 		return series.getStartingBlockingPosition() != -1;
 	}
-	
+
 	public int getAlternatePosition() {
 		return alternatePosition;
 	}

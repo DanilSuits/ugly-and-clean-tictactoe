@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 
-public class LegacyGameGUI extends Applet implements Runnable{
+public class LegacyGameGUI extends Applet implements Runnable {
 	private static final long serialVersionUID = 4873261510528018302L;
 
 	MediaTracker tracker;
@@ -22,11 +22,11 @@ public class LegacyGameGUI extends Applet implements Runnable{
 	Image losingImage;
 	Image yourTurnImage;
 	Image newGameImage;
-	
+
 	private LegacyGame game;
 
 	public void init() {
-		
+
 		tracker = new MediaTracker(this);
 		loadAllGameGraphics(tracker);
 		game = new LegacyGame();
@@ -78,7 +78,8 @@ public class LegacyGameGUI extends Applet implements Runnable{
 				for (int c = 0; c < LegacyGame.SQUARES_PER_SIDE; c++) {
 					if (game.gameBoard[0][r * LegacyGame.SQUARES_PER_SIDE + c] == LegacyGame.X_MARK_FOR_PLAYER)
 						g.drawImage(xMark, c * 30, r * 30 + 40, this);
-					else if (game.gameBoard[0][r * LegacyGame.SQUARES_PER_SIDE + c] == LegacyGame.ZERO_MARK_FOR_COMPUTER) {
+					else if (game.gameBoard[0][r * LegacyGame.SQUARES_PER_SIDE
+							+ c] == LegacyGame.ZERO_MARK_FOR_COMPUTER) {
 						if (r * LegacyGame.SQUARES_PER_SIDE + c == game.lastMove)
 							g.drawImage(filledOMark, c * 30, r * 30 + 40, this);
 						else
@@ -88,21 +89,24 @@ public class LegacyGameGUI extends Applet implements Runnable{
 				}
 			}
 		}
-	
+
 		g.drawImage(newGameImage, 0, 0, this);
 		if (game.gameState == 0)
-			g.drawImage(yourTurnImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0, this);
+			g.drawImage(yourTurnImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0,
+					this);
 		else if (game.gameState == 2)
-			g.drawImage(winningImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0, this);
+			g.drawImage(winningImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0,
+					this);
 		else if (game.gameState == 3)
-			g.drawImage(losingImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0, this);
+			g.drawImage(losingImage, LegacyGame.TOTAL_SQUARES_PER_BOARD, 0,
+					this);
 	}
 
 	public boolean mouseUp(Event evt, int x, int y) {
-		if (!loadedImages) return true;
-		
-		if (y < 40) 
-		{
+		if (!loadedImages)
+			return true;
+
+		if (y < 40) {
 			if (x < LegacyGame.TOTAL_SQUARES_PER_BOARD) // new game
 			{
 				game.run();
@@ -110,29 +114,29 @@ public class LegacyGameGUI extends Applet implements Runnable{
 			}
 			return true;
 		}
-	
+
 		x = x / 30;
 		y = (y - 40) / 30;
-	
+
 		int playerMove = y * LegacyGame.SQUARES_PER_SIDE + x;
-		
+
 		System.out.println("playerMove = " + playerMove);
 		System.out.println("player x = " + x);
 		System.out.println("player y = " + y);
 
-		
-		if (game.gameBoard[0][playerMove] != LegacyGame.EMPTY || game.gameState != 0 || game.moveNumber > 49) // polje
+		if (game.gameBoard[0][playerMove] != LegacyGame.EMPTY
+				|| game.gameState != 0 || game.moveNumber > 49) // polje
 		{
 			return true;
 		}
 		game.respondToMouseUp(playerMove, x, y);
-	
+
 		repaint();
 		return true;
 	}
-	
+
 	private void loadAllGameGraphics(MediaTracker tracker) {
-		xMark = getImage(getCodeBase(), "xMark.jpg"); 
+		xMark = getImage(getCodeBase(), "xMark.jpg");
 		oMark = getImage(getCodeBase(), "oMark.jpg");
 		filledOMark = getImage(getCodeBase(), "oMarkFilled.jpg");
 		emptySquare = getImage(getCodeBase(), "emptySquare.jpg");
@@ -140,7 +144,7 @@ public class LegacyGameGUI extends Applet implements Runnable{
 		losingImage = getImage(getCodeBase(), "lose.jpg");
 		yourTurnImage = getImage(getCodeBase(), "yourTurn.jpg");
 		newGameImage = getImage(getCodeBase(), "newgame.jpg");
-	
+
 		tracker.addImage(xMark, 0);
 		tracker.addImage(oMark, 0);
 		tracker.addImage(filledOMark, 0);

@@ -20,7 +20,7 @@ public class ShadowPosition {
 	public int getScore() {
 		return score;
 	}
-	
+
 	public String toString() {
 		return Integer.toString(position);
 	}

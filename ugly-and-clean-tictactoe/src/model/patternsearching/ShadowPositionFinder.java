@@ -1,6 +1,5 @@
 package model.patternsearching;
 
-
 import java.util.ArrayList;
 
 import model.gamestate.Board;
@@ -14,7 +13,7 @@ public class ShadowPositionFinder {
 	private Board board;
 	private PenteRoomVerifier penteRoomVerifier;
 	private ArrayList<ShadowPosition> potentialShadowPositions;
-	private int thisPlayerMark; 
+	private int thisPlayerMark;
 
 	public ShadowPositionFinder(Board board) {
 		this.board = board;
@@ -29,49 +28,68 @@ public class ShadowPositionFinder {
 		ArrayList<Integer> allOppositePlayerPositions = board
 				.getAllPositionsOccupiedByPlayer(theirPlayerMark);
 
-		trialShadowPosition = findOppositePlayerPositionWithHighScoringShadow(ourPlayerMark, trialShadowPosition, allOppositePlayerPositions);
+		trialShadowPosition = findOppositePlayerPositionWithHighScoringShadow(
+				ourPlayerMark, trialShadowPosition, allOppositePlayerPositions);
 		return trialShadowPosition.getPosition();
 	}
-	
-	private ShadowPosition findOppositePlayerPositionWithHighScoringShadow(int playerMark, ShadowPosition trialShadowPosition, ArrayList<Integer> allOppositePlayerPositions) {
+
+	private ShadowPosition findOppositePlayerPositionWithHighScoringShadow(
+			int playerMark, ShadowPosition trialShadowPosition,
+			ArrayList<Integer> allOppositePlayerPositions) {
 		for (int i = 0; i < allOppositePlayerPositions.size(); i++) {
 			int oppositePlayerPosition = allOppositePlayerPositions.get(i);
-			
-			potentialShadowPositions = tryAllFourShadowCornersOfPlayerPosition(oppositePlayerPosition, playerMark);
-			if (potentialShadowPositions.size() == 0) return new ShadowPosition(-1);
-			trialShadowPosition = findHighestScoringShadowPosition(trialShadowPosition, potentialShadowPositions);
+
+			potentialShadowPositions = tryAllFourShadowCornersOfPlayerPosition(
+					oppositePlayerPosition, playerMark);
+			if (potentialShadowPositions.size() == 0)
+				return new ShadowPosition(-1);
+			trialShadowPosition = findHighestScoringShadowPosition(
+					trialShadowPosition, potentialShadowPositions);
 			potentialShadowPositions.remove(trialShadowPosition);
-			
-			if (trialShadowPosition.getScore() == MAX_OPEN_LINES) break;
+
+			if (trialShadowPosition.getScore() == MAX_OPEN_LINES)
+				break;
 		}
 		return trialShadowPosition;
 	}
 
-	private ShadowPosition findHighestScoringShadowPosition(ShadowPosition trialShadowPosition, ArrayList<ShadowPosition> potentialShadowPositionsForThisPlayerPosition) {
-		for (int j = 0; j < potentialShadowPositionsForThisPlayerPosition.size(); j++) {
-			ShadowPosition thisPosition = potentialShadowPositionsForThisPlayerPosition.get(j);
-			
+	private ShadowPosition findHighestScoringShadowPosition(
+			ShadowPosition trialShadowPosition,
+			ArrayList<ShadowPosition> potentialShadowPositionsForThisPlayerPosition) {
+		for (int j = 0; j < potentialShadowPositionsForThisPlayerPosition
+				.size(); j++) {
+			ShadowPosition thisPosition = potentialShadowPositionsForThisPlayerPosition
+					.get(j);
+
 			if (thisPosition.getScore() > trialShadowPosition.getScore()) {
 				trialShadowPosition = thisPosition;
 			}
-			
-			if (trialShadowPosition.getScore() == MAX_OPEN_LINES) break;
+
+			if (trialShadowPosition.getScore() == MAX_OPEN_LINES)
+				break;
 		}
 		return trialShadowPosition;
 	}
 
-	private ArrayList<ShadowPosition> tryAllFourShadowCornersOfPlayerPosition(int oppositePlayerPosition, int thisPlayerMark) {
+	private ArrayList<ShadowPosition> tryAllFourShadowCornersOfPlayerPosition(
+			int oppositePlayerPosition, int thisPlayerMark) {
 		ArrayList<ShadowPosition> potentialPositions = new ArrayList<ShadowPosition>();
 
-		addDiagonalDownShadowIfPossible(oppositePlayerPosition, thisPlayerMark, potentialPositions);
-		addDiagonalUpAfterShadowIfPossible(oppositePlayerPosition, thisPlayerMark, potentialPositions);
-		addDiagonalDownBeforePositionIfPossible(oppositePlayerPosition, thisPlayerMark, potentialPositions);
-		addDiagonalUpBeforeShadowIfPossible(oppositePlayerPosition, thisPlayerMark, potentialPositions);
-		
+		addDiagonalDownShadowIfPossible(oppositePlayerPosition, thisPlayerMark,
+				potentialPositions);
+		addDiagonalUpAfterShadowIfPossible(oppositePlayerPosition,
+				thisPlayerMark, potentialPositions);
+		addDiagonalDownBeforePositionIfPossible(oppositePlayerPosition,
+				thisPlayerMark, potentialPositions);
+		addDiagonalUpBeforeShadowIfPossible(oppositePlayerPosition,
+				thisPlayerMark, potentialPositions);
+
 		return potentialPositions;
 	}
 
-	private void addDiagonalUpBeforeShadowIfPossible(int oppositePlayerPosition, int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
+	private void addDiagonalUpBeforeShadowIfPossible(
+			int oppositePlayerPosition, int thisPlayerMark,
+			ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
 				IndexListFactory.DIAGONAL_UP_BEFORE_INCREMENT, thisPlayerMark);
@@ -80,7 +98,9 @@ public class ShadowPositionFinder {
 		}
 	}
 
-	private void addDiagonalDownBeforePositionIfPossible(int oppositePlayerPosition, int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
+	private void addDiagonalDownBeforePositionIfPossible(
+			int oppositePlayerPosition, int thisPlayerMark,
+			ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
 				IndexListFactory.DIAGONAL_DOWN_BEFORE_INCREMENT, thisPlayerMark);
@@ -89,7 +109,8 @@ public class ShadowPositionFinder {
 		}
 	}
 
-	private void addDiagonalUpAfterShadowIfPossible(int oppositePlayerPosition, int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
+	private void addDiagonalUpAfterShadowIfPossible(int oppositePlayerPosition,
+			int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
 				IndexListFactory.DIAGONAL_UP_AFTER_INCREMENT, thisPlayerMark);
@@ -98,7 +119,8 @@ public class ShadowPositionFinder {
 		}
 	}
 
-	private void addDiagonalDownShadowIfPossible(int oppositePlayerPosition, int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
+	private void addDiagonalDownShadowIfPossible(int oppositePlayerPosition,
+			int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
 				IndexListFactory.DIAGONAL_DOWN_AFTER_INCREMENT, thisPlayerMark);
@@ -107,15 +129,21 @@ public class ShadowPositionFinder {
 		}
 	}
 
-	public ShadowPosition getPositionNearTheirPosition(int playerPosition, int increment, int thisPlayerMark) {
-		ShadowPosition trialPosition = new ShadowPosition(getIndexOfTrialShadowPosition(playerPosition, increment));
+	public ShadowPosition getPositionNearTheirPosition(int playerPosition,
+			int increment, int thisPlayerMark) {
+		ShadowPosition trialPosition = new ShadowPosition(
+				getIndexOfTrialShadowPosition(playerPosition, increment));
 
-		if (positionIsOutOfBounds(trialPosition)) return new ShadowPosition(-1);
-		if (positionIsEmpty(trialPosition)) return new ShadowPosition(-1);
-		
-		int numberOfOpenLinesFound = openLinesWithPentaRoomForPosition(trialPosition, thisPlayerMark);
+		if (positionIsOutOfBounds(trialPosition))
+			return new ShadowPosition(-1);
+		if (positionIsEmpty(trialPosition))
+			return new ShadowPosition(-1);
+
+		int numberOfOpenLinesFound = openLinesWithPentaRoomForPosition(
+				trialPosition, thisPlayerMark);
 		trialPosition.setScore(numberOfOpenLinesFound);
-		if (numberOfOpenLinesFound == 0) return new ShadowPosition(-1);
+		if (numberOfOpenLinesFound == 0)
+			return new ShadowPosition(-1);
 
 		return trialPosition;
 	}
@@ -129,26 +157,32 @@ public class ShadowPositionFinder {
 	}
 
 	private boolean positionIsOutOfBounds(ShadowPosition trialPosition) {
-		return !board.within1DBoardPositionIndexBounds(trialPosition.getPosition());
+		return !board.within1DBoardPositionIndexBounds(trialPosition
+				.getPosition());
 	}
-	
-	public int openLinesWithPentaRoomForPosition(ShadowPosition trialPosition, int thisPlayerMark) {
+
+	public int openLinesWithPentaRoomForPosition(ShadowPosition trialPosition,
+			int thisPlayerMark) {
 		this.thisPlayerMark = thisPlayerMark;
 		int openLinesThroughThisPoint = 0;
 		IndexListGroup allIndexLists = getAllIndexListGroups();
-		
+
 		for (int i = 0; i < allIndexLists.size(); i++) {
 			IndexList currentIndexList = allIndexLists.get(i);
-			
-			openLinesThroughThisPoint = incrementOpenLinesCountIfThisLineIsOpen(trialPosition, openLinesThroughThisPoint, currentIndexList);
+
+			openLinesThroughThisPoint = incrementOpenLinesCountIfThisLineIsOpen(
+					trialPosition, openLinesThroughThisPoint, currentIndexList);
 		}
-		
+
 		return openLinesThroughThisPoint;
 	}
 
-	private int incrementOpenLinesCountIfThisLineIsOpen(ShadowPosition trialPosition, int openLinesThroughThisPoint, IndexList list) {
+	private int incrementOpenLinesCountIfThisLineIsOpen(
+			ShadowPosition trialPosition, int openLinesThroughThisPoint,
+			IndexList list) {
 		if (list.contains(trialPosition.getPosition())) {
-			if (penteRoomVerifier.hasPenteRoomForPlayerMark(list, trialPosition.getPosition(), thisPlayerMark)) {
+			if (penteRoomVerifier.hasPenteRoomForPlayerMark(list, trialPosition
+					.getPosition(), thisPlayerMark)) {
 				openLinesThroughThisPoint++;
 			}
 		}
