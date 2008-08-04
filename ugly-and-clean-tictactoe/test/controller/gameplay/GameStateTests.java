@@ -98,6 +98,7 @@ public class GameStateTests extends TestCase {
 		assertFalse(game.getGameState().inPlay());
 	}
 
+	@SuppressWarnings("unused")
 	private String returnPrintableBoard(String crCharacter) {
 		String border = "*****************************" + crCharacter;
 		String boardString = border;
