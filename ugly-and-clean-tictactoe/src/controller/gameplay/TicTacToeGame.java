@@ -73,10 +73,14 @@ public class TicTacToeGame {
 		if (weWonTheGame()) {
 			gameState.setWeWon();
 			view.weWonGame();
-		} else if (theyWonTheGame()) {
+		} 
+		
+		if (theyWonTheGame()) {
 			gameState.setTheyWon();
 			view.theyWonGame();
-		} else if (isDraw()) {
+		} 
+		
+		if (isDraw()) {
 			gameState.setDraw();
 			view.gameIsADraw();
 		}

@@ -125,8 +125,8 @@ public class GameGUI extends Applet implements GameView {
 	}
 
 	public void gameIsADraw() {
-		throw new RuntimeException(
-				"DAVE: Implement me, do we have an image for a draw?");
+		imageGraphics.drawImage(gameImages.getDrawImage(),
+				Board.MAX_BOARD_SIZE, 0, this);
 	}
 
 	public void theyWonGame() {

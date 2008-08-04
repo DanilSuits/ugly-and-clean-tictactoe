@@ -1,5 +1,7 @@
 package model.gamestate;
 
+
+//TODO Is the class really necessary? Should game state be returned to TicTacToe game?
 public class GameState {
 
 	public static final int THEY_WON = 2;

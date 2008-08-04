@@ -21,6 +21,7 @@ public class GameImages {
 	private Image losingImage;
 	private Image yourTurnImage;
 	private Image newGameImage;
+	private Image drawImage;
 
 	public GameImages(Applet applet) {
 		tracker = new MediaTracker(applet);
@@ -32,6 +33,7 @@ public class GameImages {
 		emptySquare = applet.getImage(codeBaseUrl, "emptySquare.jpg");
 		winningImage = applet.getImage(codeBaseUrl, "win.jpg");
 		losingImage = applet.getImage(codeBaseUrl, "lose.jpg");
+		drawImage = applet.getImage(codeBaseUrl, "draw.jpg");
 		yourTurnImage = applet.getImage(codeBaseUrl, "yourTurn.jpg");
 		newGameImage = applet.getImage(codeBaseUrl, "newgame.jpg");
 
@@ -111,5 +113,9 @@ public class GameImages {
 
 	public Image getNewGameImage() {
 		return newGameImage;
+	}
+
+	public Image getDrawImage() {
+		return drawImage;
 	}
 }
