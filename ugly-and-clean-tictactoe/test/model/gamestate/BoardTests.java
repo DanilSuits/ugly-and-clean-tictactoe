@@ -22,13 +22,13 @@ public class BoardTests extends TestCase {
 	}
 
 	public void testKnowsIfIsNotEmpty() {
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
 
 		assertFalse(board.isEmpty());
 	}
 
 	public void testReSettingBoardAgainPreservesPositions() {
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
 		assertFalse(board.isEmpty());
 
 		int[] newBoardArray = new int[Board.MAX_BOARD_SIZE];
@@ -42,26 +42,26 @@ public class BoardTests extends TestCase {
 	}
 
 	public void testCanSetPositionsOnNew10by10Board() throws Exception {
-		board.setPosition(0, 0, Board.THEIR_PLAYER_MARK);
-		board.setPosition(9, 9, Board.OUR_PLAYER_MARK);
+		board.setPosition(0, 0, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(9, 9, Board.COMPUTER_PLAYER_MARK);
 
-		assertEquals(Board.THEIR_PLAYER_MARK, board.getPosition(0, 0));
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(9, 9));
+		assertEquals(Board.HUMAN_PLAYER_MARK, board.getPosition(0, 0));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(9, 9));
 	}
 
 	public void testCanAndGetSetPositionsWithSingleIntegerRepresentation()
 			throws Exception {
-		board.setPosition(1, 0, Board.THEIR_PLAYER_MARK);
-		board.setPosition(0, 8, Board.OUR_PLAYER_MARK);
-		board.setPosition(9, 9, Board.OUR_PLAYER_MARK);
+		board.setPosition(1, 0, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(0, 8, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(9, 9, Board.COMPUTER_PLAYER_MARK);
 
-		assertEquals(Board.THEIR_PLAYER_MARK, board.getPosition(1, 0));
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(0, 8));
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(9, 9));
+		assertEquals(Board.HUMAN_PLAYER_MARK, board.getPosition(1, 0));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(0, 8));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(9, 9));
 
-		assertEquals(Board.THEIR_PLAYER_MARK, board.getPosition(1, 0));
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(0, 8));
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(9, 9));
+		assertEquals(Board.HUMAN_PLAYER_MARK, board.getPosition(1, 0));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(0, 8));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(9, 9));
 	}
 
 	public void testConvertOneDimensionalBoardtoTwoDimensionalBoard()
@@ -72,13 +72,13 @@ public class BoardTests extends TestCase {
 		}
 		int[] oneDimensionalBoardArray = emptyBoardArray;
 
-		oneDimensionalBoardArray[10] = Board.OUR_PLAYER_MARK;
-		oneDimensionalBoardArray[15] = Board.THEIR_PLAYER_MARK;
+		oneDimensionalBoardArray[10] = Board.COMPUTER_PLAYER_MARK;
+		oneDimensionalBoardArray[15] = Board.HUMAN_PLAYER_MARK;
 
 		Board board = new Board(oneDimensionalBoardArray);
 
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(1, 0));
-		assertEquals(Board.THEIR_PLAYER_MARK, board.getPosition(1, 5));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(1, 0));
+		assertEquals(Board.HUMAN_PLAYER_MARK, board.getPosition(1, 5));
 	}
 
 	public void testTooBigABoardBlowsUp() throws Exception {
@@ -96,10 +96,10 @@ public class BoardTests extends TestCase {
 
 	public void testCanGetOppositePlayerMarkForEitherPlayerMark()
 			throws Exception {
-		int playerMark = Board.OUR_PLAYER_MARK;
+		int playerMark = Board.COMPUTER_PLAYER_MARK;
 		int otherPlayerMark = board.getOppositePlayerMarkFor(playerMark);
 
-		assertEquals(Board.THEIR_PLAYER_MARK, otherPlayerMark);
+		assertEquals(Board.HUMAN_PLAYER_MARK, otherPlayerMark);
 		assertEquals(playerMark, board
 				.getOppositePlayerMarkFor(otherPlayerMark));
 	}
@@ -110,7 +110,7 @@ public class BoardTests extends TestCase {
 	}
 
 	public void testPositionIsNotEmpty() throws Exception {
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
 
 		assertFalse(board.positionIsEmpty(45));
 		assertFalse(board.positionIsEmpty(4, 5));
@@ -176,7 +176,7 @@ public class BoardTests extends TestCase {
 	public void test2DSetPositionOutsideBoardBoundaries() throws Exception {
 		try {
 			board.setPosition(-5, Board.MAX_COLUMNS - 1,
-					Board.THEIR_PLAYER_MARK);
+					Board.HUMAN_PLAYER_MARK);
 		} catch (Exception e) {
 			assertEquals("Board index -5,9 is outside board bounds.", e
 					.getMessage());
@@ -186,8 +186,8 @@ public class BoardTests extends TestCase {
 	public void testSetIncomingBoardArray() throws Exception {
 		int[] oneDimensionalBoardArray = new int[Board.MAX_BOARD_SIZE];
 
-		oneDimensionalBoardArray[10] = Board.OUR_PLAYER_MARK;
-		oneDimensionalBoardArray[15] = Board.THEIR_PLAYER_MARK;
+		oneDimensionalBoardArray[10] = Board.COMPUTER_PLAYER_MARK;
+		oneDimensionalBoardArray[15] = Board.HUMAN_PLAYER_MARK;
 
 		TicTacToeGame game = new TicTacToeGame(new PatrickStrategy(),
 				new StubView());
@@ -195,8 +195,8 @@ public class BoardTests extends TestCase {
 
 		Board board = game.getBoard();
 
-		assertEquals(Board.OUR_PLAYER_MARK, board.getPosition(1, 0));
-		assertEquals(Board.THEIR_PLAYER_MARK, board.getPosition(1, 5));
+		assertEquals(Board.COMPUTER_PLAYER_MARK, board.getPosition(1, 0));
+		assertEquals(Board.HUMAN_PLAYER_MARK, board.getPosition(1, 5));
 	}
 
 	public void testPositionGetterOnGame() throws Exception {
@@ -204,9 +204,9 @@ public class BoardTests extends TestCase {
 				new StubView());
 		Board board = game.getBoard();
 
-		board.setPosition(4, 4, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 4, Board.HUMAN_PLAYER_MARK);
 
-		assertEquals(Board.THEIR_PLAYER_MARK, game.getPosition(44));
+		assertEquals(Board.HUMAN_PLAYER_MARK, game.getPosition(44));
 	}
 
 	public void testPositionIsAvailable() throws Exception {
@@ -214,7 +214,7 @@ public class BoardTests extends TestCase {
 				new StubView());
 		Board board = game.getBoard();
 
-		board.setPosition(4, 4, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 4, Board.HUMAN_PLAYER_MARK);
 
 		assertTrue(game.positionIsAvailable(42));
 		assertTrue(game.positionIsAvailable(4, 2));

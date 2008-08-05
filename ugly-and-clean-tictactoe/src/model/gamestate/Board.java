@@ -44,8 +44,8 @@ public class Board {
 	private int[][] boardArray;
 	private int tempBoardArrayForDimensionConversions[][];
 
-	public static final int OUR_PLAYER_MARK = 1;
-	public static final int THEIR_PLAYER_MARK = 2;
+	public static final int COMPUTER_PLAYER_MARK = 1;
+	public static final int HUMAN_PLAYER_MARK = 2;
 
 	public static final int STARTING_POSITION = 0;
 	public static final int MAX_COLUMNS = 10;

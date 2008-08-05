@@ -13,10 +13,10 @@ public class StubView implements GameView {
 	public void gameIsADraw() {
 	}
 
-	public void theyWonGame() {
+	public void humanComputerWonGame() {
 	}
 
-	public void weWonGame() {
+	public void computerWonGame() {
 	}
 
 }

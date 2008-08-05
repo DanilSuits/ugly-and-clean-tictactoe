@@ -18,7 +18,7 @@ public class RandomMoveTests extends TestCase {
 	public void testWillChooseEmptySpot() throws Exception {
 		for (int i = 0; i < Board.MAX_ROWS; i++) {
 			for (int j = 0; j < Board.MAX_COLUMNS; j++) {
-				board.setPosition(i, j, Board.THEIR_PLAYER_MARK);
+				board.setPosition(i, j, Board.HUMAN_PLAYER_MARK);
 			}
 		}
 
@@ -39,7 +39,7 @@ public class RandomMoveTests extends TestCase {
 	public void testWillChooseEmptyMidBoardSpot() throws Exception {
 		for (int i = 0; i < Board.MAX_ROWS; i++) {
 			for (int j = 0; j < Board.MAX_COLUMNS; j++) {
-				board.setPosition(i, j, Board.THEIR_PLAYER_MARK);
+				board.setPosition(i, j, Board.HUMAN_PLAYER_MARK);
 			}
 		}
 

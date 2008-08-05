@@ -97,7 +97,7 @@ public class PatrickStrategy implements IStrategy {
 		String message;
 		message = "Penta gap-blocking position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-				SeriesSize.FIVE, Board.THEIR_PLAYER_MARK), MoveScore.NINE,
+				SeriesSize.FIVE, Board.HUMAN_PLAYER_MARK), MoveScore.NINE,
 				message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.NINE,
@@ -109,7 +109,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Tessera-blocking position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FOUR,
-						Board.THEIR_PLAYER_MARK), MoveScore.NINE, message));
+						Board.HUMAN_PLAYER_MARK), MoveScore.NINE, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.NINE,
 				message));
@@ -120,7 +120,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Penta gap-filling position: ";
 		moveGroup
 				.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-						SeriesSize.FIVE, Board.OUR_PLAYER_MARK), MoveScore.TEN,
+						SeriesSize.FIVE, Board.COMPUTER_PLAYER_MARK), MoveScore.TEN,
 						message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
@@ -132,7 +132,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Tessera-capping position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FOUR,
-						Board.OUR_PLAYER_MARK), MoveScore.TEN, message));
+						Board.COMPUTER_PLAYER_MARK), MoveScore.TEN, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
 				message));
@@ -143,7 +143,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Penta-capping position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FIVE,
-						Board.OUR_PLAYER_MARK), MoveScore.TEN, message));
+						Board.COMPUTER_PLAYER_MARK), MoveScore.TEN, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
 				message));
@@ -153,7 +153,7 @@ public class PatrickStrategy implements IStrategy {
 		String message;
 		message = "Tessera gap-filling position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-				SeriesSize.FOUR, Board.OUR_PLAYER_MARK), MoveScore.SEVEN,
+				SeriesSize.FOUR, Board.COMPUTER_PLAYER_MARK), MoveScore.SEVEN,
 				message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.SEVEN,
@@ -165,7 +165,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Tria-capping position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.THREE,
-						Board.OUR_PLAYER_MARK), MoveScore.SEVEN, message));
+						Board.COMPUTER_PLAYER_MARK), MoveScore.SEVEN, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.SEVEN,
 				message));
@@ -175,7 +175,7 @@ public class PatrickStrategy implements IStrategy {
 		String message;
 		message = "Tessera gap-blocking position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-				SeriesSize.FOUR, Board.THEIR_PLAYER_MARK), MoveScore.EIGHT,
+				SeriesSize.FOUR, Board.HUMAN_PLAYER_MARK), MoveScore.EIGHT,
 				message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.EIGHT,
@@ -187,7 +187,7 @@ public class PatrickStrategy implements IStrategy {
 		message = "Tria-blocking position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.THREE,
-						Board.THEIR_PLAYER_MARK), MoveScore.EIGHT, message));
+						Board.HUMAN_PLAYER_MARK), MoveScore.EIGHT, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.EIGHT,
 				message));
@@ -198,14 +198,14 @@ public class PatrickStrategy implements IStrategy {
 		message = "Pair-capping position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.TWO,
-						Board.OUR_PLAYER_MARK), MoveScore.FIVE, message));
+						Board.COMPUTER_PLAYER_MARK), MoveScore.FIVE, message));
 	}
 
 	private void gatherTriaGapFillingMoves(MoveGroup moveGroup) {
 		String message;
 		message = "Tria gap-filling position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-				SeriesSize.THREE, Board.OUR_PLAYER_MARK), MoveScore.FIVE,
+				SeriesSize.THREE, Board.COMPUTER_PLAYER_MARK), MoveScore.FIVE,
 				message));
 	}
 
@@ -214,14 +214,14 @@ public class PatrickStrategy implements IStrategy {
 		message = "Pair-blocking position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.TWO,
-						Board.THEIR_PLAYER_MARK), MoveScore.SIX, message));
+						Board.HUMAN_PLAYER_MARK), MoveScore.SIX, message));
 	}
 
 	private void gatherTriaGapBlockingMoves(MoveGroup moveGroup) {
 		String message;
 		message = "Tria gap-blocking position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
-				SeriesSize.THREE, Board.THEIR_PLAYER_MARK), MoveScore.SIX,
+				SeriesSize.THREE, Board.HUMAN_PLAYER_MARK), MoveScore.SIX,
 				message));
 	}
 
@@ -243,7 +243,7 @@ public class PatrickStrategy implements IStrategy {
 		String message;
 		message = "Shadow corner near opposing player position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestShadowPosition(Board.OUR_PLAYER_MARK), MoveScore.TWO,
+				.getBestShadowPosition(Board.COMPUTER_PLAYER_MARK), MoveScore.TWO,
 				message));
 	}
 

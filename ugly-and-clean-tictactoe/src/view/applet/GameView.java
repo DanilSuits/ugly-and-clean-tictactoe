@@ -6,9 +6,9 @@ public interface GameView {
 
 	void drawMark(int row, int column, int playerMark);
 
-	void weWonGame();
+	void computerWonGame();
 
-	void theyWonGame();
+	void humanComputerWonGame();
 
 	void gameIsADraw();
 

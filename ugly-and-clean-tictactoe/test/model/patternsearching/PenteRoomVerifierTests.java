@@ -30,19 +30,19 @@ public class PenteRoomVerifierTests extends TestCase {
 
 	public void testReportsPenteRoomForPlayerMarkFromGivenPosition()
 			throws Exception {
-		board.setPosition(5, 3, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 3, Board.HUMAN_PLAYER_MARK);
 
 		assertTrue(verifier.hasPenteRoomForPlayerMark(list, Board
-				.getSingleCoordValueFor(5, 6), Board.OUR_PLAYER_MARK));
+				.getSingleCoordValueFor(5, 6), Board.COMPUTER_PLAYER_MARK));
 	}
 
 	public void testReportsNoPenteRoomForPlayerMarkFromGivenPosition()
 			throws Exception {
-		board.setPosition(5, 3, Board.THEIR_PLAYER_MARK);
-		board.setPosition(5, 8, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 3, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(5, 8, Board.HUMAN_PLAYER_MARK);
 
 		assertFalse(verifier.hasPenteRoomForPlayerMark(list, Board
-				.getSingleCoordValueFor(5, 6), Board.OUR_PLAYER_MARK));
+				.getSingleCoordValueFor(5, 6), Board.COMPUTER_PLAYER_MARK));
 	}
 
 }

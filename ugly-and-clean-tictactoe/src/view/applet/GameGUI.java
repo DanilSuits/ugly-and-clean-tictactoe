@@ -129,12 +129,12 @@ public class GameGUI extends Applet implements GameView {
 				Board.MAX_BOARD_SIZE, 0, this);
 	}
 
-	public void theyWonGame() {
+	public void humanComputerWonGame() {
 		imageGraphics.drawImage(gameImages.getWinningImage(),
 				Board.MAX_BOARD_SIZE, 0, this);
 	}
 
-	public void weWonGame() {
+	public void computerWonGame() {
 		imageGraphics.drawImage(gameImages.getLosingImage(),
 				Board.MAX_BOARD_SIZE, 0, this);
 	}
@@ -146,7 +146,7 @@ public class GameGUI extends Applet implements GameView {
 		imageGraphics.drawImage(gameImages.getImageForPlayerMark(playerMark),
 				x, y, this);
 
-		if (playerMark == Board.OUR_PLAYER_MARK) {
+		if (playerMark == Board.COMPUTER_PLAYER_MARK) {
 			scheduleUpdateLastPlayedImage(x, y);
 		}
 		repaint();

@@ -25,8 +25,8 @@ public class GameStateTests extends TestCase {
 		assertEquals(0, game.moveNumber());
 		assertTrue(game.getGameState().inPlay());
 		assertTrue(game.inPlay());
-		assertFalse(game.getGameState().theyWon());
-		assertFalse(game.getGameState().weWon());
+		assertFalse(game.getGameState().humanPlayerWon());
+		assertFalse(game.getGameState().computerWon());
 		assertFalse(game.weHaveAWinner());
 	}
 
@@ -44,41 +44,41 @@ public class GameStateTests extends TestCase {
 	}
 
 	public void testWeWinTheGame() throws Exception {
-		board.setPosition(4, 4, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 5, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 6, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 7, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 8, Board.OUR_PLAYER_MARK);
+		board.setPosition(4, 4, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 5, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 6, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 7, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 8, Board.COMPUTER_PLAYER_MARK);
 
-		game.makeCompleteMoveCycle(48);
+		game.updateGameState();
 
-		assertTrue(game.getGameState().weWon());
-		assertTrue(game.weWon());
+		assertTrue(game.getGameState().computerWon());
+		assertTrue(game.computerWon());
 		assertTrue(game.weHaveAWinner());
 		assertFalse(game.getGameState().inPlay());
 		assertFalse(game.inPlay());
-		assertFalse(game.getGameState().theyWon());
+		assertFalse(game.getGameState().humanPlayerWon());
 	}
 
 	public void testTheyWinTheGame() throws Exception {
-		board.setPosition(4, 4, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 6, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 8, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 4, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 6, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 8, Board.HUMAN_PLAYER_MARK);
 
-		game.makeCompleteMoveCycle(48);
+		game.updateGameState();
 
-		assertTrue(game.getGameState().theyWon());
+		assertTrue(game.getGameState().humanPlayerWon());
 		assertTrue(game.weHaveAWinner());
-		assertTrue(game.theyWon());
-		assertFalse(game.getGameState().weWon());
+		assertTrue(game.humanPlayerWon());
+		assertFalse(game.getGameState().computerWon());
 		assertFalse(game.getGameState().inPlay());
 		assertFalse(game.inPlay());
 	}
 
 	public void testDraw() throws Exception {
-		int mark = Board.THEIR_PLAYER_MARK;
+		int mark = Board.HUMAN_PLAYER_MARK;
 
 		for (int position = 0; position < Board.MAX_BOARD_SIZE; position++) {
 			mark = NOBODY_PLAYER_MARK_FORCES_DRAW;
@@ -92,9 +92,9 @@ public class GameStateTests extends TestCase {
 
 		game.updateGameState();
 
-		assertFalse(game.getGameState().theyWon());
+		assertFalse(game.getGameState().humanPlayerWon());
 		assertTrue(game.getGameState().draw());
-		assertFalse(game.getGameState().weWon());
+		assertFalse(game.getGameState().computerWon());
 		assertFalse(game.getGameState().inPlay());
 	}
 

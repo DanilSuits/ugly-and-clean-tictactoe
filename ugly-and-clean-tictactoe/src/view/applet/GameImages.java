@@ -62,13 +62,13 @@ public class GameImages {
 		Image image;
 
 		switch (playerMark) {
-		case Board.OUR_PLAYER_MARK:
+		case Board.COMPUTER_PLAYER_MARK:
 			// NOTE: the view starts with a filled O, then changes it to a
 			// non-filled O with a timer
 			image = filledOMark;
 			break;
 
-		case Board.THEIR_PLAYER_MARK:
+		case Board.HUMAN_PLAYER_MARK:
 			image = xMark;
 			break;
 

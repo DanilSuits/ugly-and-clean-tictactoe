@@ -768,9 +768,8 @@ public class LegacyGame {
 						}
 					}
 					if (marksByAxisByPlayerForChecking[0] == 2
-							&& marksByAxisByPlayerForChecking[1] == 2) /* nasao */
+							&& marksByAxisByPlayerForChecking[1] == 2) 
 						for (l = 0; l < 2; l++)
-							/* prazna!? polja */
 							stagingBoard[tempRowForChecks[l]] = OCCUPIED;
 				}
 			}

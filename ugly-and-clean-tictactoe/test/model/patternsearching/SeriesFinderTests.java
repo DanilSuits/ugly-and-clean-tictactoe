@@ -16,14 +16,14 @@ public class SeriesFinderTests extends TestCase {
 		super.setUp();
 		board = new Board();
 		seriesFinder = new SeriesFinder(board);
-		board.setPosition(5, 1, Board.THEIR_PLAYER_MARK);
-		board.setPosition(5, 2, Board.THEIR_PLAYER_MARK);
-		board.setPosition(5, 3, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 1, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(5, 2, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(5, 3, Board.HUMAN_PLAYER_MARK);
 	}
 
 	public void testFindsOneHorizontalSeriesOfThree() throws Exception {
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -34,12 +34,12 @@ public class SeriesFinderTests extends TestCase {
 	}
 
 	public void testOnlyStartingBlockingPositionIsOpen() throws Exception {
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 6, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 8, Board.OUR_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 6, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 8, Board.COMPUTER_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 
 		assertEquals(2, allSeriesFound.size());
 
@@ -50,9 +50,9 @@ public class SeriesFinderTests extends TestCase {
 	}
 
 	public void testOnlyEndingBlockingPositionIsOpen() throws Exception {
-		board.setPosition(5, 0, Board.OUR_PLAYER_MARK);
+		board.setPosition(5, 0, Board.COMPUTER_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 
 		assertEquals(1, allSeriesFound.size());
 
@@ -63,9 +63,9 @@ public class SeriesFinderTests extends TestCase {
 	}
 
 	public void testFindsOneHorizontalSeriesOfFour() throws Exception {
-		board.setPosition(5, 4, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 4, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.FOUR,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -78,7 +78,7 @@ public class SeriesFinderTests extends TestCase {
 	public void testFindsOneHorizontalSeriesOfTwo() throws Exception {
 		board.setPosition(5, 3, Board.EMPTY);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.TWO,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -90,11 +90,11 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testFindOneHorizontalAndOneVerticalSeriesOfThree()
 			throws Exception {
-		board.setPosition(4, 1, Board.THEIR_PLAYER_MARK);
-		board.setPosition(6, 1, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 1, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(6, 1, Board.HUMAN_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(2, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(1);
@@ -106,12 +106,12 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testFindOneHorizontalAndOneVerticalSeriesWithNoStartingBlockingPosition()
 			throws Exception {
-		board.setPosition(0, 3, Board.THEIR_PLAYER_MARK);
-		board.setPosition(1, 3, Board.THEIR_PLAYER_MARK);
-		board.setPosition(2, 3, Board.THEIR_PLAYER_MARK);
+		board.setPosition(0, 3, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(1, 3, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(2, 3, Board.HUMAN_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(2, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(1);
@@ -122,12 +122,12 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testFindOneHorizontalAndOneDiagonalDownSeriesWithNoEndingBlockingPosition()
 			throws Exception {
-		board.setPosition(7, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(8, 8, Board.THEIR_PLAYER_MARK);
-		board.setPosition(9, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(7, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(8, 8, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(9, 9, Board.HUMAN_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(2, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(1);
@@ -138,12 +138,12 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testFindOneHorizontalAndOneDiagonalUpSeriesOfThree()
 			throws Exception {
-		board.setPosition(0, 9, Board.THEIR_PLAYER_MARK);
-		board.setPosition(2, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(1, 8, Board.THEIR_PLAYER_MARK);
+		board.setPosition(0, 9, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(2, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(1, 8, Board.HUMAN_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(2, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(1);
@@ -154,15 +154,15 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testFindOneHorizontalSeriesOfThreeInMixedList()
 			throws Exception {
-		board.setPosition(4, 2, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 3, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 4, Board.OUR_PLAYER_MARK);
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 6, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 7, Board.THEIR_PLAYER_MARK);
+		board.setPosition(4, 2, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 3, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 4, Board.COMPUTER_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 6, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 7, Board.HUMAN_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(2, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -173,10 +173,10 @@ public class SeriesFinderTests extends TestCase {
 
 	public void testIgnoresHorizontalSeriesOfThreeWithNoPentaRoom()
 			throws Exception {
-		board.setPosition(5, 4, Board.OUR_PLAYER_MARK);
+		board.setPosition(5, 4, Board.COMPUTER_PLAYER_MARK);
 
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(0, allSeriesFound.size());
 	}
 

@@ -53,13 +53,13 @@ public class TicTacToeGame {
 	}
 
 	public void markTheirMove(int playerMove) {
-		markMove(playerMove, Board.THEIR_PLAYER_MARK);
+		markMove(playerMove, Board.HUMAN_PLAYER_MARK);
 	}
 
 	public void makeOurMove() {
 		if (noWinnerYet()) {
 			int position = makeMove(true);
-			markMove(position, Board.OUR_PLAYER_MARK);
+			markMove(position, Board.COMPUTER_PLAYER_MARK);
 		}
 	}
 
@@ -71,13 +71,13 @@ public class TicTacToeGame {
 
 	public void updateGameState() {
 		if (weWonTheGame()) {
-			gameState.setWeWon();
-			view.weWonGame();
+			gameState.setComputerWon();
+			view.computerWonGame();
 		} 
 		
 		if (theyWonTheGame()) {
-			gameState.setTheyWon();
-			view.theyWonGame();
+			gameState.setHumanPlayerWon();
+			view.humanComputerWonGame();
 		} 
 		
 		if (isDraw()) {
@@ -95,11 +95,11 @@ public class TicTacToeGame {
 	}
 
 	private boolean theyWonTheGame() {
-		return wonTheGame(Board.THEIR_PLAYER_MARK, getWinningSize());
+		return wonTheGame(Board.HUMAN_PLAYER_MARK, getWinningSize());
 	}
 
 	private boolean weWonTheGame() {
-		return wonTheGame(Board.OUR_PLAYER_MARK, getWinningSize());
+		return wonTheGame(Board.COMPUTER_PLAYER_MARK, getWinningSize());
 	}
 
 	public boolean noWinnerYet() {
@@ -153,12 +153,12 @@ public class TicTacToeGame {
 		return gameState.inPlay();
 	}
 
-	public boolean theyWon() {
-		return gameState.theyWon();
+	public boolean humanPlayerWon() {
+		return gameState.humanPlayerWon();
 	}
 
-	public boolean weWon() {
-		return gameState.weWon();
+	public boolean computerWon() {
+		return gameState.computerWon();
 	}
 
 	public boolean justStarted() {

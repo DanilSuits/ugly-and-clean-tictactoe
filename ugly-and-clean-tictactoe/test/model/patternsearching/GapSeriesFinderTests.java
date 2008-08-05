@@ -19,10 +19,10 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsSimpleHorizontalGapSeries() throws Exception {
-		board.setPosition(5, 1, Board.THEIR_PLAYER_MARK);
-		board.setPosition(5, 3, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 1, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(5, 3, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -30,10 +30,10 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsSimpleHorizontalGapSeriesAtLineEnd() throws Exception {
-		board.setPosition(5, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(5, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(5, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(5, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -41,10 +41,10 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsSimpleVerticalGapSeries() throws Exception {
-		board.setPosition(7, 9, Board.THEIR_PLAYER_MARK);
-		board.setPosition(9, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(7, 9, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(9, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -52,10 +52,10 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsSimpleDiagDownGapSeries() throws Exception {
-		board.setPosition(7, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(9, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(7, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(9, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -63,10 +63,10 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsSimpleDiagUpGapSeries() throws Exception {
-		board.setPosition(2, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(0, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(2, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(0, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.THREE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -74,11 +74,11 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsComplexDiagUpGapSeriesOfFour() throws Exception {
-		board.setPosition(3, 6, Board.THEIR_PLAYER_MARK);
-		board.setPosition(2, 7, Board.THEIR_PLAYER_MARK);
-		board.setPosition(0, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(3, 6, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(2, 7, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(0, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.FOUR,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);
@@ -86,12 +86,12 @@ public class GapSeriesFinderTests extends TestCase {
 	}
 
 	public void testPlugsComplexDiagUpGapSeriesOfFive() throws Exception {
-		board.setPosition(3, 6, Board.THEIR_PLAYER_MARK);
-		board.setPosition(4, 5, Board.THEIR_PLAYER_MARK);
-		board.setPosition(1, 8, Board.THEIR_PLAYER_MARK);
-		board.setPosition(0, 9, Board.THEIR_PLAYER_MARK);
+		board.setPosition(3, 6, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(1, 8, Board.HUMAN_PLAYER_MARK);
+		board.setPosition(0, 9, Board.HUMAN_PLAYER_MARK);
 		allSeriesFound = seriesFinder.getAllSeriesOfSize(SeriesSize.FIVE,
-				Board.THEIR_PLAYER_MARK);
+				Board.HUMAN_PLAYER_MARK);
 		assertEquals(1, allSeriesFound.size());
 
 		ISeries seriesFound = allSeriesFound.get(0);

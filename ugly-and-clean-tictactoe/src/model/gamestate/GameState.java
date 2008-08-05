@@ -4,8 +4,8 @@ package model.gamestate;
 //TODO Is the class really necessary? Should game state be returned to TicTacToe game?
 public class GameState {
 
-	public static final int THEY_WON = 2;
-	public static final int WE_WON = 3;
+	public static final int HUMAN_PLAYER_WON = 2;
+	public static final int COMPUTER_WON = 3;
 	public static final int IN_PLAY = 0;
 	public static final int DRAW = 4;
 
@@ -26,12 +26,12 @@ public class GameState {
 		state = IN_PLAY;
 	}
 
-	public void setWeWon() {
-		state = WE_WON;
+	public void setComputerWon() {
+		state = COMPUTER_WON;
 	}
 
-	public void setTheyWon() {
-		state = THEY_WON;
+	public void setHumanPlayerWon() {
+		state = HUMAN_PLAYER_WON;
 	}
 
 	public void setLastMove(int position) {
@@ -54,12 +54,12 @@ public class GameState {
 		return state() == IN_PLAY;
 	}
 
-	public boolean theyWon() {
-		return state == THEY_WON;
+	public boolean humanPlayerWon() {
+		return state == HUMAN_PLAYER_WON;
 	}
 
-	public boolean weWon() {
-		return state == WE_WON;
+	public boolean computerWon() {
+		return state == COMPUTER_WON;
 	}
 
 	public boolean justStarted() {
