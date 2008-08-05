@@ -277,21 +277,22 @@ public class LegacyGame {
 		int j, k, l;
 
 		for (l = 0; l < 6; l++) {
-			for (j = 0; j < SQUARES_PER_SIDE; j++) {
+			for (j = 0; j < 10; j++) {
 				for (k = 0; k < 8; k++)
 					marksByAxisByPlayerForChecking[k] = 0;
 				for (k = 0; k < 5; k++) {
 					marksByAxisByPlayerForChecking[gameBoard[0][j
-							* SQUARES_PER_SIDE + l + k]]++;
+							* 10 + l + k]]++;
 					marksByAxisByPlayerForChecking[4 + gameBoard[0][l
-							* SQUARES_PER_SIDE + j + k * SQUARES_PER_SIDE]]++;
+							* 10 + j + k * 10]]++;
 				}
 				if (marksByAxisByPlayerForChecking[1] == 5
 						|| marksByAxisByPlayerForChecking[5] == 5)
 					return X_MARK_FOR_PLAYER;
+				
 				if (marksByAxisByPlayerForChecking[2] == 5
 						|| marksByAxisByPlayerForChecking[6] == 5)
-					return ZERO_MARK_FOR_COMPUTER;
+					return  ZERO_MARK_FOR_COMPUTER;
 			}
 
 			for (j = 0; j < 6; j++) {
@@ -299,13 +300,14 @@ public class LegacyGame {
 					marksByAxisByPlayerForChecking[k] = 0;
 				for (k = 0; k < 5; k++) {
 					marksByAxisByPlayerForChecking[gameBoard[0][l
-							* SQUARES_PER_SIDE + j + k * 11]]++;
+							* 10 + j + k * 11]]++;
 					marksByAxisByPlayerForChecking[4 + gameBoard[0][l
-							* SQUARES_PER_SIDE + j - k * 9 + 40]]++;
+							* 10 + j - k * 9 + 40]]++;
 				}
 				if (marksByAxisByPlayerForChecking[1] == 5
 						|| marksByAxisByPlayerForChecking[5] == 5)
 					return X_MARK_FOR_PLAYER;
+				
 				if (marksByAxisByPlayerForChecking[2] == 5
 						|| marksByAxisByPlayerForChecking[6] == 5)
 					return ZERO_MARK_FOR_COMPUTER;
