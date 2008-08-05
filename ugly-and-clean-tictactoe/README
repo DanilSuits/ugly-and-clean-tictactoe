@@ -34,9 +34,9 @@ You can learn more about the new game by looking at and running the unit tests i
   -- What does running this TestCase tell you about the old and new games? 
   
 Exercise One:  
-  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to win if they get 4 in a row, while the computer must still get 5 in a row?   
+  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must still get 6 in a row?   
   -- Try to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
-  -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 4 in a row, while the computer must still get 5 in a row?   
+  -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must still get 6 in a row?   
   -- Test-drive this change, and then verify it manually by running the applet. 
  
 Exercise Two:

@@ -58,6 +58,7 @@ public class PatrickStrategy implements IStrategy {
 	}
 
 	private MoveGroup gatherPenteMoves(MoveGroup moveGroup) {
+		gatherPenteCappingMoves(moveGroup);
 		gatherTesseraCappingMoves(moveGroup);
 		gatherPentaBlockingMoves(moveGroup);
 		gatherTesseraBlockingMoves(moveGroup);
@@ -131,6 +132,17 @@ public class PatrickStrategy implements IStrategy {
 		message = "Tessera-capping position: ";
 		moveGroup.add(new Move(patternFinder
 				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FOUR,
+						Board.OUR_PLAYER_MARK), MoveScore.TEN, message));
+		moveGroup.add(new Move(patternFinder
+				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
+				message));
+	}
+
+	private void gatherPenteCappingMoves(MoveGroup moveGroup) {
+		String message;
+		message = "Penta-capping position: ";
+		moveGroup.add(new Move(patternFinder
+				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FIVE,
 						Board.OUR_PLAYER_MARK), MoveScore.TEN, message));
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,

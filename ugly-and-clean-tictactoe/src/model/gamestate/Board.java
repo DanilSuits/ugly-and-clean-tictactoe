@@ -67,7 +67,7 @@ public class Board {
 	public static final int MAX_COLUMN_INDEX = MAX_COLUMNS - 1;
 
 	public enum SeriesSize {
-		FIVE(5), FOUR(4), THREE(3), TWO(2), ONE(1);
+		SIX(6), FIVE(5), FOUR(4), THREE(3), TWO(2), ONE(1);
 
 		private int size;
 
