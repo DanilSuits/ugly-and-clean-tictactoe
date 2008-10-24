@@ -34,15 +34,14 @@ You can learn more about the new game by looking at and running the unit tests i
   -- What does running this TestCase tell you about the old and new games? 
   
 Exercise One:  
-  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must still get 6 in a row?   
+  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must get 6 in a row?   
   -- Try to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
-  -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must still get 6 in a row?   
+  -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must get 6 in a row?   
   -- Test-drive this change, and then verify it manually by running the applet. 
  
 Exercise Two:
 This game is a just a TicTacToe game. In the related game called Pente, a pair of contiguous "stones" (marks) are removed if 
-they are blocked on each end by opposing player's stones (marks). (You can read more about Pente here: 
- )
+they are blocked on each end by opposing player's stones (marks). (You can read more about Pente here:   http://en.wikipedia.org/wiki/Pente)
  
  In this exercise, first do it with the legacy game. 
   -- How would you test-drive the ability to "happen upon" an 'XOO-, where "-" is an empty spot' pattern, where you are X's and the other player is O's. 
