@@ -7,8 +7,6 @@ import model.strategy.PatrickStrategy;
 
 public class GameStateTests extends TestCase {
 	private static final int NOBODY_PLAYER_MARK_FORCES_DRAW = 7;
-	private static final String DOUBLE_BLANK_SPACE = "  ";
-	private static final String SINGLE_BLANK_SPACE = " ";
 
 	private TicTacToeGame game;
 	private Board board;
@@ -20,13 +18,9 @@ public class GameStateTests extends TestCase {
 		board = game.getBoard();
 	}
 
-	public void testGameStart() throws Exception {
+	public void testBasicGameStart() throws Exception {
 		assertTrue(game.justStarted());
-		assertEquals(0, game.moveNumber());
-		assertTrue(game.getGameState().inPlay());
 		assertTrue(game.inPlay());
-		assertFalse(game.getGameState().humanPlayerWon());
-		assertFalse(game.getGameState().computerWon());
 		assertFalse(game.weHaveAWinner());
 	}
 
@@ -96,58 +90,6 @@ public class GameStateTests extends TestCase {
 		assertTrue(game.getGameState().draw());
 		assertFalse(game.getGameState().computerWon());
 		assertFalse(game.getGameState().inPlay());
-	}
-
-	@SuppressWarnings("unused")
-	private String returnPrintableBoard(String crCharacter) {
-		String border = "*****************************" + crCharacter;
-		String boardString = border;
-		String spacer = SINGLE_BLANK_SPACE;
-
-		spacer = DOUBLE_BLANK_SPACE;
-		for (int x = 0; x < 10; x++) {
-			boardString = printBoardRow(boardString, spacer, x);
-		}
-		boardString += border;
-
-		return boardString;
-	}
-
-	private String printBoardRow(String boardString, String spacer, int x) {
-		int cell;
-		for (int y = 0; y < 10; y++) {
-			String mark = null;
-			cell = game.getPosition(y);
-
-			if (doubleDigitRow(cell))
-				spacer = SINGLE_BLANK_SPACE;
-			else if ((game.getPosition(0) == 0) && (game.getPosition(1) == 0))
-				spacer = DOUBLE_BLANK_SPACE;
-			else
-				spacer = DOUBLE_BLANK_SPACE;
-
-			if (game.getPosition(cell) == 2) {
-				mark = "00";
-				if (cell < 9)
-					spacer = SINGLE_BLANK_SPACE;
-			}
-			if (game.getPosition(cell) == 1) {
-				mark = "XX";
-				if (cell < 9)
-					spacer = SINGLE_BLANK_SPACE;
-			}
-			if (mark == null) {
-				boardString += "" + cell + spacer;
-			} else {
-				boardString += "" + mark + spacer;
-			}
-		}
-		boardString += "\n";
-		return boardString;
-	}
-
-	private boolean doubleDigitRow(int cell) {
-		return cell > 9;
 	}
 
 }
