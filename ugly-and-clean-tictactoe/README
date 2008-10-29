@@ -7,18 +7,23 @@ What you'll need for this series of exercises:
 
 Unzip and import this project into Eclipse. This Eclipse project consists of two different implementations of the same 10 x 10, first-to-5 TicTacToe game: an older, 
 legacy version, and a newer, mostly-test-driven replacement. Below we ask you to compare and learn about the two games, and to make 
-some specific changes to the newer one. IMPORTANT: When you make changes to the code, please insert comments that label your changes with your name or 
+some specific changes to the newer one. 
+
+NOTE: You need not spend more than 2 or 3 hours on this entire exercise, though you can feel free to spend as much time at it as you like. It can be a fun codebase to play in. 
+
+IMPORTANT: When you make changes to the code, please insert comments that label your changes with your name or 
 initials and the date, to make it easy for us to find them without your assistance. 
 
 The older game consists of a single large class in its own source folder and package: legacy/legacyGame.LegacyGame. 
 The newer game consists of the src/controller.gameplay.TicTacToeGame class, and several other classes 
-(in packages src/model.gamestate, src/model.patterns, and src/model.patternsearching).
+(in various packages).
 
-Right-click on the GameGUI applet in the package view.applet, to play the newer TicTacToeGame and get a feel for it. (You are X's, and the computer is o's.)
+Right-click on the GameGUI applet in the package view.applet, to play the newer TicTacToeGame and get a feel for it. (You are X's, and the computer is O's.)
 The LegacyGame has its own applet in the legacyCode package, but you can look at the code.
 
 Look carefully at the LegacyGame (in package legacy/legacyGame), and compare it to the new TicTacToeGame and its various classes (in packages src/model.gamestate, 
-src/model.patterns, and src/model.patternsearching). After comparing the old game and the new, write down ALL THE DESIGN DIFFERENCES YOU CAN between them.
+src/model.patterns, and src/model.patternsearching). After comparing the old game and the new, write down some of the DESIGN DIFFERENCES between them. Feel free to make a 
+copy of this ReadMe file and respond in-line. 
 
  -- Can you tell any differences in overall game play strategy between the two games?
  -- Can you mostly tell what is going on in the new game?
@@ -28,26 +33,30 @@ src/model.patterns, and src/model.patternsearching). After comparing the old gam
  
 You can learn more about the new game by looking at and running the unit tests in the test source folder. 
  -- What do the unit tests tell you about the new game?
+ -- What do you like and not like about any of these TestCases and test methods? 
  
  You can run the old game against the new game using the single test method in the OldGameAgainstNewGameTests TestCase in manualTests.manualTests. This test method is currently 
  set to play the two games against each other 200 times. 
   -- What does running this TestCase tell you about the old and new games? 
   
 Exercise One:  
-  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must get 6 in a row?   
-  -- Try to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
+  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to continue to win if they get 5 in a row, while the computer must now get 6 in a row to win?   
+  -- Spend no more than about 30 minutes trying to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
   -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must get 6 in a row?   
-  -- Test-drive this change, and then verify it manually by running the applet. 
+  -- Spend no more than about 30 minutes trying to test-drive this change, and then verify it manually by running the applet. 
+  
+  Write a few notes about what you've learned about the differences between the two games by writing just this much code, and doing this much analysis and comparison. 
  
 Exercise Two:
 This game is a just a TicTacToe game. In the related game called Pente, a pair of contiguous "stones" (marks) are removed if 
-they are blocked on each end by opposing player's stones (marks). (You can read more about Pente here:   http://en.wikipedia.org/wiki/Pente)
+they are blocked on each end by opposing player's stones (marks). (You can read more about Pente here:   http://en.wikipedia.org/wiki/Pente )
  
- In this exercise, first do it with the legacy game. 
-  -- How would you test-drive the ability to "happen upon" an 'XOO-, where "-" is an empty spot' pattern, where you are X's and the other player is O's. 
-  -- How would you test-drive the ability to opportunistically create a 'XOOX' pattern, and then remove the two opposing player's 'OO's? 
-  -- Where would you put these new unit tests? In an existing TestCase class, or in a brand new one, or in both? 
-  -- Test-drive this change, and then it verify it manually with the applet. 
+ In this next exercise, first consider how you would do it with the legacy game. Write a few notes about how you might either test=drive this or just hack it into place. 
+ 
+ Next, actually test-drive the change in the test-driven codebase:
+  -- Test-drive the ability to "happen upon" an 'XOO-, where "-" is an empty spot' pattern, where you are X's and the other player is O's. 
+  -- Test-drive the ability to opportunistically create a 'XOOX' pattern, and then remove the two opposing player's 'OO's? 
+  -- Finally, verify the new behavior manually with the applet. 
   
 Exercise Three:
 What glaring opportunities for refactoring can you find in the new game?  Do you have the test coverage you need to make them?
