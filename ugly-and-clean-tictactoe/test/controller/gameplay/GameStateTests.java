@@ -3,7 +3,7 @@ package controller.gameplay;
 import junit.framework.TestCase;
 import model.gamestate.Board;
 import model.gamestate.GameState;
-import model.strategy.PatrickStrategy;
+import model.strategy.ExampleStrategy;
 
 public class GameStateTests extends TestCase {
 	private static final int NOBODY_PLAYER_MARK_FORCES_DRAW = 7;
@@ -14,7 +14,7 @@ public class GameStateTests extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		game = new TicTacToeGame(new PatrickStrategy(), new StubView());
+		game = new TicTacToeGame(new ExampleStrategy(), new StubView());
 		board = game.getBoard();
 	}
 

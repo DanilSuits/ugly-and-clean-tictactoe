@@ -1,7 +1,7 @@
 package controller.gameplay;
 
 import model.gamestate.Board;
-import model.strategy.PatrickStrategy;
+import model.strategy.ExampleStrategy;
 
 import org.jmock.Expectations;
 import org.jmock.integration.junit3.MockObjectTestCase;
@@ -15,7 +15,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		game = new TicTacToeGame(new PatrickStrategy(), new StubView());
+		game = new TicTacToeGame(new ExampleStrategy(), new StubView());
 		board = game.getBoard();
 	}
 
@@ -71,7 +71,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 				one(mockGameView).restartGame();
 			}
 		});
-		game = new TicTacToeGame(new PatrickStrategy(), mockGameView);
+		game = new TicTacToeGame(new ExampleStrategy(), mockGameView);
 	}
 
 	public void testViewGetsRestartedOnStartNewGame() throws Exception {
@@ -82,7 +82,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 				exactly(2).of(mockGameView).restartGame();
 			}
 		});
-		game = new TicTacToeGame(new PatrickStrategy(), mockGameView);
+		game = new TicTacToeGame(new ExampleStrategy(), mockGameView);
 		game.startNewGame();
 	}
 
@@ -102,7 +102,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 						with(equal(Board.COMPUTER_PLAYER_MARK)));
 			}
 		});
-		game = new TicTacToeGame(new PatrickStrategy(), mockGameView);
+		game = new TicTacToeGame(new ExampleStrategy(), mockGameView);
 		game.makeCompleteMoveCycle(12);
 	}
 

@@ -1,7 +1,7 @@
 package model.gamestate;
 
 import junit.framework.TestCase;
-import model.strategy.PatrickStrategy;
+import model.strategy.ExampleStrategy;
 import controller.gameplay.StubView;
 import controller.gameplay.TicTacToeGame;
 
@@ -189,7 +189,7 @@ public class BoardTests extends TestCase {
 		oneDimensionalBoardArray[10] = Board.COMPUTER_PLAYER_MARK;
 		oneDimensionalBoardArray[15] = Board.HUMAN_PLAYER_MARK;
 
-		TicTacToeGame game = new TicTacToeGame(new PatrickStrategy(),
+		TicTacToeGame game = new TicTacToeGame(new ExampleStrategy(),
 				new StubView());
 		game.setBoard(oneDimensionalBoardArray);
 
@@ -200,7 +200,7 @@ public class BoardTests extends TestCase {
 	}
 
 	public void testPositionGetterOnGame() throws Exception {
-		TicTacToeGame game = new TicTacToeGame(new PatrickStrategy(),
+		TicTacToeGame game = new TicTacToeGame(new ExampleStrategy(),
 				new StubView());
 		Board board = game.getBoard();
 
@@ -210,7 +210,7 @@ public class BoardTests extends TestCase {
 	}
 
 	public void testPositionIsAvailable() throws Exception {
-		TicTacToeGame game = new TicTacToeGame(new PatrickStrategy(),
+		TicTacToeGame game = new TicTacToeGame(new ExampleStrategy(),
 				new StubView());
 		Board board = game.getBoard();
 

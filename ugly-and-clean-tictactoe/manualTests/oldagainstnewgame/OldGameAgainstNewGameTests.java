@@ -3,7 +3,7 @@ package oldagainstnewgame;
 import java.math.BigDecimal;
 import legacyGame.LegacyGame;
 import model.gamestate.Board;
-import model.strategy.PatrickStrategy;
+import model.strategy.ExampleStrategy;
 import baseManualTestUtils.BaseSeriesMethodTestFixture;
 import controller.gameplay.StubView;
 import controller.gameplay.TicTacToeGame;
@@ -19,7 +19,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		newGame = new TicTacToeGame(new PatrickStrategy(), new StubView());
+		newGame = new TicTacToeGame(new ExampleStrategy(), new StubView());
 		drawTotal = 0;
 		oldGameWinTotal = 0;
 		newGameTotal = 0;
@@ -42,7 +42,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 			oldGame = null;
 			oldGame = new LegacyGame();
 			newGame = null;
-			newGame = new TicTacToeGame(new PatrickStrategy(), new StubView());
+			newGame = new TicTacToeGame(new ExampleStrategy(), new StubView());
 		}
 		reportResults(totalGamesPlayed, startTime);
 

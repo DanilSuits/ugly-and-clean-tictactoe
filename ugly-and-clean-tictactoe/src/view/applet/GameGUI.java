@@ -9,7 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import model.gamestate.Board;
-import model.strategy.PatrickStrategy;
+import model.strategy.ExampleStrategy;
 import controller.gameplay.TicTacToeGame;
 
 public class GameGUI extends Applet implements GameView {
@@ -42,7 +42,7 @@ public class GameGUI extends Applet implements GameView {
 		gameImages.awaitImageLoad();
 
 		// NOTE: creating a new game actually calls back on us to update the UI
-		game = new TicTacToeGame(new PatrickStrategy(), this);
+		game = new TicTacToeGame(new ExampleStrategy(), this);
 
 		addMouseListener(new MouseAdapter() {
 

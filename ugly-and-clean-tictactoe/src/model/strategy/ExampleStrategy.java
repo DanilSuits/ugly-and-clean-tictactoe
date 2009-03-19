@@ -7,17 +7,17 @@ import model.gamestate.Board.SeriesSize;
 import model.patternsearching.PatternFinder;
 import controller.gameplay.TicTacToeGame.MoveScore;
 
-public class PatrickStrategy implements IStrategy {
+public class ExampleStrategy implements IStrategy {
 	private Board board;
 	private PatternFinder patternFinder;
 
-	public PatrickStrategy() {
+	public ExampleStrategy() {
 		this.board = new Board();
 		this.patternFinder = new PatternFinder(board);
 	}
 
 	public IStrategy newInstance() {
-		return new PatrickStrategy();
+		return new ExampleStrategy();
 	}
 
 	public Board getBoard() {
@@ -44,7 +44,7 @@ public class PatrickStrategy implements IStrategy {
 	}
 
 	private boolean foundAGoodMove(Move highestScoringMove) {
-		return PatrickStrategy.weFoundAGoodPosition(highestScoringMove.getPosition());
+		return ExampleStrategy.weFoundAGoodPosition(highestScoringMove.getPosition());
 	}
 
 	private MoveGroup getAllPossibleMoves(boolean reporting) {
@@ -93,6 +93,7 @@ public class PatrickStrategy implements IStrategy {
 		return moveGroup;
 	}
 
+	//TODO Extract duplication
 	private void gatherPentaGapFillingMoves(MoveGroup moveGroup) {
 		String message;
 		message = "Penta gap-blocking position: ";
