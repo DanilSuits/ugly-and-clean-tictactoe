@@ -27,15 +27,17 @@ public class GameImages {
 		tracker = new MediaTracker(applet);
 		URL codeBaseUrl = applet.getCodeBase();
 
-		xMark = applet.getImage(codeBaseUrl, "xMark.jpg");
-		oMark = applet.getImage(codeBaseUrl, "oMark.jpg");
-		filledOMark = applet.getImage(codeBaseUrl, "oMarkFilled.jpg");
-		emptySquare = applet.getImage(codeBaseUrl, "emptySquare.jpg");
-		winningImage = applet.getImage(codeBaseUrl, "win.jpg");
-		losingImage = applet.getImage(codeBaseUrl, "lose.jpg");
-		drawImage = applet.getImage(codeBaseUrl, "draw.jpg");
-		yourTurnImage = applet.getImage(codeBaseUrl, "yourTurn.jpg");
-		newGameImage = applet.getImage(codeBaseUrl, "newgame.jpg");
+		String graphicsDirectory = "../graphics/";
+		
+		xMark = applet.getImage(codeBaseUrl, graphicsDirectory + "xMark.jpg");
+		oMark = applet.getImage(codeBaseUrl, graphicsDirectory + "oMark.jpg");
+		filledOMark = applet.getImage(codeBaseUrl, graphicsDirectory + "oMarkFilled.jpg");
+		emptySquare = applet.getImage(codeBaseUrl, graphicsDirectory + "emptySquare.jpg");
+		winningImage = applet.getImage(codeBaseUrl, graphicsDirectory + "win.jpg");
+		losingImage = applet.getImage(codeBaseUrl, graphicsDirectory + "lose.jpg");
+		drawImage = applet.getImage(codeBaseUrl, graphicsDirectory + "draw.jpg");
+		yourTurnImage = applet.getImage(codeBaseUrl, graphicsDirectory + "yourTurn.jpg");
+		newGameImage = applet.getImage(codeBaseUrl, graphicsDirectory + "newgame.jpg");
 
 		tracker.addImage(xMark, 0);
 		tracker.addImage(oMark, 0);
