@@ -1,4 +1,6 @@
-package controller.gameplay;
+package model.gamestate;
+
+import controller.gameplay.TicTacToeGame;
 
 public class GameStateTestUtils {
 	private static final String DOUBLE_BLANK_SPACE = "  ";

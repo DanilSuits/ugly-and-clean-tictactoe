@@ -8,6 +8,7 @@ import model.patternsearching.PatternFinder;
 import controller.gameplay.TicTacToeGame.MoveScore;
 
 public class ExampleStrategy implements IStrategy {
+	private static final int NO_GOOD_MOVE_TO_MAKE = -1;
 	private Board board;
 	private PatternFinder patternFinder;
 
@@ -249,7 +250,7 @@ public class ExampleStrategy implements IStrategy {
 	}
 
 	private static boolean weFoundAGoodPosition(int position) {
-		return position != -1;
+		return position != NO_GOOD_MOVE_TO_MAKE;
 	}
 
 }

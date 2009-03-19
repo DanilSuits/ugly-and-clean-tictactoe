@@ -1,5 +1,7 @@
-package controller.gameplay;
+package model.gamestate;
 
+import controller.gameplay.StubView;
+import controller.gameplay.TicTacToeGame;
 import junit.framework.TestCase;
 import model.gamestate.Board;
 import model.gamestate.GameState;

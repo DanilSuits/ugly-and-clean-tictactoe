@@ -28,7 +28,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 
 	// TODO: Need board-comparison utility between moves, to ensure that only
 	// one place changed!
-	public void testNewGameKicksOldGamesButt() throws Exception {
+	public void testNewGameBeatsOrDrawsOldGameMostOfTheTime() throws Exception {
 		reporting = false;
 		int totalGamesPlayed = 200;
 
@@ -47,7 +47,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		reportResults(totalGamesPlayed, startTime);
 
 		assertTrue(averageMovesPerGame > 15);
-		assertTrue(newGamePercentage.floatValue() > 45);
+		assertTrue(newGamePercentage.floatValue() > 40);
 		assertTrue(oldGamePercentage.floatValue() < 10);
 		assertTrue(drawPercentage.floatValue() > 35);
 	}
