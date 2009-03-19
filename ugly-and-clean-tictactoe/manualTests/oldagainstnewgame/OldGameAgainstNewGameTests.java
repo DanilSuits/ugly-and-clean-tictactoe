@@ -30,7 +30,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	// one place changed!
 	public void testNewGameBeatsOrDrawsOldGameMostOfTheTime() throws Exception {
 		reporting = false;
-		int totalGamesPlayed = 200;
+		int totalGamesPlayed = 500;
 
 		long startTime = System.currentTimeMillis();
 

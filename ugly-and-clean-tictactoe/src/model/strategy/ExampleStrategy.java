@@ -97,10 +97,11 @@ public class ExampleStrategy implements IStrategy {
 	//TODO Extract duplication
 	private void gatherPentaGapFillingMoves(MoveGroup moveGroup) {
 		String message;
-		message = "Penta gap-blocking position: ";
+		message = "Penta gap-filling position: ";
 		moveGroup.add(new Move(patternFinder.getGapForGapSeriesOfSize(
 				SeriesSize.FIVE, Board.HUMAN_PLAYER_MARK), MoveScore.NINE,
 				message));
+		
 		moveGroup.add(new Move(patternFinder
 				.getAlternateBlockingPositionForSeries(), MoveScore.NINE,
 				message));
@@ -119,7 +120,7 @@ public class ExampleStrategy implements IStrategy {
 
 	private void gatherPentaBlockingMoves(MoveGroup moveGroup) {
 		String message;
-		message = "Penta gap-filling position: ";
+		message = "Penta gap-blocking position: ";
 		moveGroup
 				.add(new Move(patternFinder.getGapForGapSeriesOfSize(
 						SeriesSize.FIVE, Board.COMPUTER_PLAYER_MARK), MoveScore.TEN,
@@ -230,23 +231,19 @@ public class ExampleStrategy implements IStrategy {
 	private void findRandomOpenPosition(MoveGroup moveGroup) {
 		String message;
 		message = "random open position: ";
-		moveGroup.add(new Move(patternFinder.findRandomEmptyPosition(),
-				MoveScore.ZERO, message));
+		moveGroup.add(new Move(patternFinder.findRandomEmptyPosition(), MoveScore.ZERO, message));
 	}
 
 	private void findRandomMidBoardMove(MoveGroup moveGroup) {
 		String message;
 		message = "random open mid-board position: ";
-		moveGroup.add(new Move(patternFinder.findRandomEmptyMidBoardPosition(),
-				MoveScore.ONE, message));
+		moveGroup.add(new Move(patternFinder.findRandomEmptyMidBoardPosition(),MoveScore.ONE, message));
 	}
 
 	private void gatherShadowCornerMoves(MoveGroup moveGroup) {
 		String message;
 		message = "Shadow corner near opposing player position: ";
-		moveGroup.add(new Move(patternFinder
-				.getBestShadowPosition(Board.COMPUTER_PLAYER_MARK), MoveScore.TWO,
-				message));
+		moveGroup.add(new Move(patternFinder.getBestShadowPosition(Board.COMPUTER_PLAYER_MARK), MoveScore.TWO, message));
 	}
 
 	private static boolean weFoundAGoodPosition(int position) {

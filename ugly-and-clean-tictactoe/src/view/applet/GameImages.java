@@ -7,7 +7,6 @@ import java.net.URL;
 
 import model.gamestate.Board;
 
-//TODO Put all graphics in graphics folder
 //TODO Import all graphic file references from properties file	
 
 public class GameImages {
