@@ -48,7 +48,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 
 		assertTrue(averageMovesPerGame > 15);
 		assertTrue(newGamePercentage.floatValue() > 40);
-		assertTrue(oldGamePercentage.floatValue() < 10);
+		assertTrue(oldGamePercentage.floatValue() < 18);
 		assertTrue(drawPercentage.floatValue() > 35);
 	}
 
