@@ -59,10 +59,24 @@ they are blocked on each end by opposing player's stones (marks). (You can read 
   -- Finally, verify the new behavior manually with the applet. 
   
 Exercise Three:
-What glaring opportunities for refactoring can you find in the new game?  Do you have the test coverage you need to make them?
+What glaring or subtle opportunities for refactoring can you find in the new game?  Do you have the test coverage you need to make them?
+  -- Are all of the unit tests well factored? 
+  -- Are all of the pattern finding classes compliant with the so-called "Single Responsibility Principle" (SRP)? 
   -- If you can find a good refactoring opportunity in the new game, make the change in as test-protected a way as you can. 
   
 Exercise Four: 
   -- How would you evolve the TicTacToeGame strategy so that it pro-actively looks for opportunities to trap pairs of opposing player marks? 
   -- Test-drive this change, and verify it manually with the applet GUI. 
+  
+Exercise Five:
+  OK, so this one takes many hours to complete. It's completely optional. If you don't have a job, or a life, and you are addicted 
+  to interesting code problems, feel free to try this one. The idea here is to test-drive a self-educating meta-TicTacToe game that learns how to combine moves most successfully to evolve 
+  an optimal strategy.  
+  
+   -- The current ExampleStrategy class uses a particular "hard-coded" strategy to gather up potential moves for any game state, weight those potential moves, and then choose a particular move to make. 
+   -- Test-drive a StrategyEvolver class that uses the same Domain Specific Language (DSL) of move pattern types, but tries different combinations of those move patterns, in different orders, 
+      assigning different weights to them. (Feel free to add any of your own interesting new pattern types, but test-drive them.)
+   -- Use a version of the manualTests test method to run each of your different combinations/weight assignments for different moves at least 200 times against the old game. 
+   -- Store the average wins, losses, and draws for each such combination, when your game goes first. 
+   -- Find the best overall strategy (move pattern and weight combination), and then find a way to encode that statically in a new OptimalStrategy class. 
   
