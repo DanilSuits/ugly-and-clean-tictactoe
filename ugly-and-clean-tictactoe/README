@@ -71,7 +71,7 @@ Exercise Four:
 Exercise Five:
   OK, so this one takes many hours to complete. It's completely optional. If you don't have a job, or a life, and you are addicted 
   to interesting code problems, feel free to try this one. The idea here is to test-drive a self-educating meta-TicTacToe game that learns how to combine moves most successfully to evolve 
-  an optimal strategy.  You may want to start with a fresh copy of the codebase, without the Pente behavior, as a starting point. (You can just revert to the google code repository head again.)
+  an optimal strategy.  You may want to start with a fresh copy of the codebase, without the Pente behavior, as a starting point. (You can save a zip of what you ahve done so far, then just revert to the google code repository head again.)
   
    -- The current ExampleStrategy class uses a particular "hard-coded" strategy to gather up potential moves for any game state, weight those potential moves, and then choose a particular move to make. 
    -- Test-drive a StrategyEvolver class that uses the same Domain Specific Language (DSL) of move pattern types, but tries different combinations of those move patterns, in different orders, 
