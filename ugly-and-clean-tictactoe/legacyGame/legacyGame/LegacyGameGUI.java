@@ -136,14 +136,16 @@ public class LegacyGameGUI extends Applet implements Runnable {
 	}
 
 	private void loadAllGameGraphics(MediaTracker tracker) {
-		xMark = getImage(getCodeBase(), "xMark.jpg");
-		oMark = getImage(getCodeBase(), "oMark.jpg");
-		filledOMark = getImage(getCodeBase(), "oMarkFilled.jpg");
-		emptySquare = getImage(getCodeBase(), "emptySquare.jpg");
-		winningImage = getImage(getCodeBase(), "win.jpg");
-		losingImage = getImage(getCodeBase(), "lose.jpg");
-		yourTurnImage = getImage(getCodeBase(), "yourTurn.jpg");
-		newGameImage = getImage(getCodeBase(), "newgame.jpg");
+		String graphicsDirectory = "../graphics/";
+		
+		xMark = getImage(getCodeBase(), graphicsDirectory + "xMark.jpg");
+		oMark = getImage(getCodeBase(), graphicsDirectory + "oMark.jpg");
+		filledOMark = getImage(getCodeBase(), graphicsDirectory + "oMarkFilled.jpg");
+		emptySquare = getImage(getCodeBase(), graphicsDirectory + "emptySquare.jpg");
+		winningImage = getImage(getCodeBase(), graphicsDirectory + "win.jpg");
+		losingImage = getImage(getCodeBase(), graphicsDirectory + "lose.jpg");
+		yourTurnImage = getImage(getCodeBase(), graphicsDirectory + "yourTurn.jpg");
+		newGameImage = getImage(getCodeBase(), graphicsDirectory + "newgame.jpg");
 
 		tracker.addImage(xMark, 0);
 		tracker.addImage(oMark, 0);
