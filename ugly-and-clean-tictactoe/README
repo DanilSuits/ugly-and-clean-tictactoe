@@ -5,25 +5,29 @@ What you'll need for this series of exercises:
 
 -- Eclipse 3.2+
 
+Detailed Instructions:
+
 Unzip and import this project into Eclipse. This Eclipse project consists of two different implementations of the same 10 x 10, first-to-5 TicTacToe game: an older, 
-legacy version, and a newer, mostly-test-driven replacement. Below we ask you to compare and learn about the two games, and to make 
-some specific changes to the newer one. 
+legacy version, and a newer, mostly-test-driven replacement. Below we ask you to compare and learn about the two games, and to make some specific changes to the newer one. 
+
+First, make a copy of this ReadMe file and respond to questions below in-line. 
 
 NOTE: You need not spend more than 2 hours on this entire exercise, though you can feel free to spend as much time at it as you like. It can be a fun codebase to play in. 
 
-IMPORTANT: When you make changes to the code, please insert comments that label your changes with your name or 
-initials and the date, to make it easy for us to find them without your assistance. 
+IMPORTANT: When you make changes to the code, please insert "//TODO" tag comments that label your changes with your name or 
+initials and the date, to make it easy for us to find them without your assistance. We can then find your changes easily in the Eclipse "tasks" view; which saves us time. 
 
-The older game consists of a single large class in its own source folder and package: legacy/legacyGame.LegacyGame. 
-The newer game consists of the src/controller.gameplay.TicTacToeGame class, and several other classes 
+-----------
+
+The older game version consists of a single large class in its own source folder and package: legacy/legacyGame.LegacyGame. 
+The newer game version consists of the src/controller.gameplay.TicTacToeGame class, and several other classes 
 (in various packages).
 
 Right-click on the GameGUI applet in the package view.applet, to play the newer TicTacToeGame and get a feel for it. (You are X's, and the computer is O's.)
-The LegacyGame has its own applet in the legacyCode package, but you can look at the code.
+The LegacyGame has its own applet in the legacyCode package, and you can run and look at the code.
 
-Look carefully at the LegacyGame (in package legacy/legacyGame), and compare it to the new TicTacToeGame and its various classes (in packages src/model.gamestate, 
-src/model.patterns, and src/model.patternsearching). After comparing the old game and the new, write down some of the DESIGN DIFFERENCES between them. Feel free to make a 
-copy of this ReadMe file and respond in-line. 
+Look carefully at the LegacyGame class (in package legacy/legacyGame), and compare it to the new TicTacToeGame and its various classes (in packages src/model.gamestate, 
+src/model.patterns, and src/model.patternsearching). After comparing the old game and the new, write down some of the DESIGN DIFFERENCES between them. 
 
  -- Can you tell any differences in overall game play strategy between the two games?
  -- Can you mostly tell what is going on in the new game?
@@ -81,4 +85,25 @@ Exercise Five:
    -- Use a version of the manualTests test method to run each of your different combinations/weight assignments for different moves at least 200 times against the old game. 
    -- Store the average wins, losses, and draws for each such combination, when your game goes first. 
    -- Find the best overall strategy (move pattern and weight combination), and then find a way to encode that statically in a new OptimalStrategy class. 
+   
+   
+REFERENCES: 
+
+  To learn why this exercise is important, and the principles, patterns, and practices behind the differences between the legacy version and new 
+  version of the TicTacToeGame, consider the following books:
+  
+  Clean Code,  							by Robert C Martin
+  Test-Driven Development: By Example, 	by Kent Beck
+  Refactoring, 							by Martin Fowler
+  Working Effectively with Legacy Code, by Michael Feathers
+  xUnit Test Patterns, 					by Gerard Meszaros
+  Test Driven, 							by Lasse Koskela
+  
+ 
+ At the time of this writing, this set of books describes much of the knowledge that any "agile" Java developer should be familiar with. 
+  
+  
+  
+     
+
   
