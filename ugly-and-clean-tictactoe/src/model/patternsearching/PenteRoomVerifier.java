@@ -2,7 +2,7 @@ package model.patternsearching;
 
 import model.gamestate.Board;
 import model.patterns.ISeries;
-import model.patterns.IndexList;
+import model.patterns.DirectionalBoardPositionsList;
 
 public class PenteRoomVerifier {
 	private Board board;
@@ -12,7 +12,7 @@ public class PenteRoomVerifier {
 		this.board = board;
 	}
 
-	public boolean hasPenteRoomForPlayerMark(IndexList list, int trialPosition,
+	public boolean hasPenteRoomForPlayerMark(DirectionalBoardPositionsList list, int trialPosition,
 			int thisPlayerMark) {
 		this.thisPlayerMark = thisPlayerMark;
 		int roomBefore = getRoomBeforeThisPosition(list, trialPosition);
@@ -21,7 +21,7 @@ public class PenteRoomVerifier {
 		return ((roomBefore + roomAfter) >= Board.PENTE_SIZE);
 	}
 
-	private int getRoomAfterThisPosition(int trialPosition, IndexList list) {
+	private int getRoomAfterThisPosition(int trialPosition, DirectionalBoardPositionsList list) {
 		int roomAfter = 0;
 		int trialPositionIndex = list.getIndexFor(trialPosition);
 
@@ -37,7 +37,7 @@ public class PenteRoomVerifier {
 		return roomAfter;
 	}
 
-	private int getRoomBeforeThisPosition(IndexList list, int trialPosition) {
+	private int getRoomBeforeThisPosition(DirectionalBoardPositionsList list, int trialPosition) {
 		int roomBefore = 0;
 		int trialPositionIndex = list.getIndexFor(trialPosition);
 
@@ -58,7 +58,7 @@ public class PenteRoomVerifier {
 				.getOppositePlayerMarkFor(thisPlayerMark);
 	}
 
-	public boolean hasPenteRoom(ISeries currentSeries, IndexList currentList,
+	public boolean hasPenteRoom(ISeries currentSeries, DirectionalBoardPositionsList currentList,
 			int thisPlayerMark) {
 		return hasPenteRoomForPlayerMark(currentList, currentSeries.get(0),
 				thisPlayerMark);

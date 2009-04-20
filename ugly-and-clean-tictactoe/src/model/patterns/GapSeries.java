@@ -3,11 +3,11 @@ package model.patterns;
 import model.gamestate.Board.SeriesSize;
 
 public class GapSeries extends Series implements ISeries {
-	private IndexList emptyList;
+	private DirectionalBoardPositionsList emptyList;
 
 	public GapSeries() {
 		super();
-		emptyList = new IndexList();
+		emptyList = new DirectionalBoardPositionsList();
 	}
 
 	public int getGap(int i) {
