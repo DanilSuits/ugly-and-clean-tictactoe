@@ -29,9 +29,8 @@ public class ExampleStrategy implements IStrategy {
 		return patternFinder.canFindSeriesOfSize(winningSeriesSize, playerMark);
 	}
 
-	public int makeMove(boolean reporting) {
-		MoveGroup moveGroup = getAllPossibleMoves(reporting);
-		Move highestScoringMove = highestScoringMove(moveGroup);
+	public int makeMove() {
+		Move highestScoringMove = getAllPossibleMoves().bestOverallMove();
 		
 		if (foundAGoodMove(highestScoringMove)) {
 			return highestScoringMove.getPosition();
@@ -40,16 +39,12 @@ public class ExampleStrategy implements IStrategy {
 		throw new RuntimeException("Could not find any moves to make.");
 	}
 
-	private Move highestScoringMove(MoveGroup moveGroup) {
-		return moveGroup.bestOverallMove();
-	}
-
 	private boolean foundAGoodMove(Move highestScoringMove) {
 		return ExampleStrategy.weFoundAGoodPosition(highestScoringMove.getPosition());
 	}
 
-	private MoveGroup getAllPossibleMoves(boolean reporting) {
-		MoveGroup moveGroup = new MoveGroup(reporting);
+	private MoveGroup getAllPossibleMoves() {
+		MoveGroup moveGroup = new MoveGroup();
 
 		moveGroup = gatherPenteMoves(moveGroup);
 		moveGroup = gatherTesseraMoves(moveGroup);
