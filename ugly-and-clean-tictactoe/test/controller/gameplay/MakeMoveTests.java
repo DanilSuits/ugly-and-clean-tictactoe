@@ -6,7 +6,7 @@ import model.strategy.ExampleStrategy;
 import org.jmock.Expectations;
 import org.jmock.integration.junit3.MockObjectTestCase;
 
-import view.applet.GameView;
+import view.applet.IGameView;
 
 public class MakeMoveTests extends MockObjectTestCase {
 
@@ -64,7 +64,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 	}
 
 	public void testViewGetsRestartedOnCreation() throws Exception {
-		final GameView mockGameView = mock(GameView.class);
+		final IGameView mockGameView = mock(IGameView.class);
 
 		checking(new Expectations() {
 			{
@@ -75,7 +75,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 	}
 
 	public void testViewGetsRestartedOnStartNewGame() throws Exception {
-		final GameView mockGameView = mock(GameView.class);
+		final IGameView mockGameView = mock(IGameView.class);
 
 		checking(new Expectations() {
 			{
@@ -87,7 +87,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 	}
 
 	public void testViewUpdatedWithNewMarkOnMove() throws Exception {
-		final GameView mockGameView = mock(GameView.class);
+		final IGameView mockGameView = mock(IGameView.class);
 
 		checking(new Expectations() {
 			{

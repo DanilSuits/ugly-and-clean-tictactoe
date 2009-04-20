@@ -1,6 +1,6 @@
 package view.applet;
 
-public interface GameView {
+public interface IGameView {
 
 	void restartGame();
 

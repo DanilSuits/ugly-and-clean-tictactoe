@@ -4,7 +4,7 @@ import model.gamestate.Board;
 import model.gamestate.GameState;
 import model.gamestate.Board.SeriesSize;
 import model.strategy.IStrategy;
-import view.applet.GameView;
+import view.applet.IGameView;
 
 public class TicTacToeGame {
 	private SeriesSize winningSize = SeriesSize.FIVE;
@@ -13,7 +13,7 @@ public class TicTacToeGame {
 	private GameState gameState;
 	private IStrategy strategy;
 
-	private GameView view;
+	private IGameView view;
 
 	public static final int MAX_NUMBER_OF_MOVES = 48;
 
@@ -32,7 +32,7 @@ public class TicTacToeGame {
 		}
 	}
 
-	public TicTacToeGame(IStrategy strategy, GameView view) {
+	public TicTacToeGame(IStrategy strategy, IGameView view) {
 		this.strategy = strategy;
 		this.view = view;
 		startNewGame();

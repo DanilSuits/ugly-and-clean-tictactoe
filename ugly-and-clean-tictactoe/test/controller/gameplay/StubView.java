@@ -1,8 +1,8 @@
 package controller.gameplay;
 
-import view.applet.GameView;
+import view.applet.IGameView;
 
-public class StubView implements GameView {
+public class StubView implements IGameView {
 
 	public void restartGame() {
 	}

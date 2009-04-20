@@ -12,7 +12,7 @@ import model.gamestate.Board;
 import model.strategy.ExampleStrategy;
 import controller.gameplay.TicTacToeGame;
 
-public class GameGUI extends Applet implements GameView {
+public class GameGUI extends Applet implements IGameView {
 	private static final long serialVersionUID = 4873261510528018302L;
 
 	private static final int WINDOW_HEIGHT = 350;
