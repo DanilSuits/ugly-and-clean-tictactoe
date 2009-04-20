@@ -18,7 +18,7 @@ public class StrategyFake implements IStrategy {
 		return null;
 	}
 
-	public int makeMove(boolean reporting) {
+	public int makeMove() {
 		return 0;
 	}
 

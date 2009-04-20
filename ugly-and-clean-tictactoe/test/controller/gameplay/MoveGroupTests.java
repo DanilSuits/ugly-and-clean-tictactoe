@@ -8,7 +8,7 @@ import model.gamestate.MoveGroup;
 import controller.gameplay.TicTacToeGame.MoveScore;
 
 public class MoveGroupTests extends TestCase {
-	MoveGroup moveGroup = new MoveGroup(false);
+	MoveGroup moveGroup = new MoveGroup();
 
 	@Override
 	protected void setUp() throws Exception {

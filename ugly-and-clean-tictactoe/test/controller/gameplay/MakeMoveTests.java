@@ -20,7 +20,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 	}
 
 	public void testWePickRandomMidBoardSpotForNewGame() throws Exception {
-		int position = game.makeMove(false);
+		int position = game.makeMove();
 
 		assertTrue(position < Board.MID_BOARD_UPPER_BOUND);
 		assertTrue(position >= Board.MID_BOARD_LOWER_BOUND);
@@ -29,7 +29,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 	public void testOnSecondMoveWePickShadowPosition() throws Exception {
 		board.setPosition(4, 5, Board.HUMAN_PLAYER_MARK);
 
-		int position = game.makeMove(false);
+		int position = game.makeMove();
 		assertEquals(Board.getSingleCoordValueFor(5, 4), position);
 	}
 
@@ -39,7 +39,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 		board.setPosition(4, 7, Board.HUMAN_PLAYER_MARK);
 		board.setPosition(4, 8, Board.HUMAN_PLAYER_MARK);
 
-		assertEquals(Board.getSingleCoordValueFor(4, 9), game.makeMove(false));
+		assertEquals(Board.getSingleCoordValueFor(4, 9), game.makeMove());
 	}
 
 	public void testFindTesseraEndingBlockingPositionBeforePairStartingPosition()
@@ -51,7 +51,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 		board.setPosition(3, 5, Board.COMPUTER_PLAYER_MARK);
 		board.setPosition(3, 6, Board.COMPUTER_PLAYER_MARK);
 
-		assertEquals(Board.getSingleCoordValueFor(3, 7), game.makeMove(false));
+		assertEquals(Board.getSingleCoordValueFor(3, 7), game.makeMove());
 	}
 
 	public void testFillGapInPotentialOpposingTessera() throws Exception {
@@ -60,7 +60,7 @@ public class MakeMoveTests extends MockObjectTestCase {
 		board.setPosition(7, 3, Board.HUMAN_PLAYER_MARK);
 		board.setPosition(7, 4, Board.HUMAN_PLAYER_MARK);
 
-		assertEquals(Board.getSingleCoordValueFor(6, 5), game.makeMove(false));
+		assertEquals(Board.getSingleCoordValueFor(6, 5), game.makeMove());
 	}
 
 	public void testViewGetsRestartedOnCreation() throws Exception {

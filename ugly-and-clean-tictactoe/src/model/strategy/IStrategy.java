@@ -8,7 +8,7 @@ public interface IStrategy {
 
 	public Board getBoard();
 
-	public int makeMove(boolean reporting);
+	public int makeMove();
 
 	public boolean wonTheGame(int playerMark, SeriesSize winningSeriesSize);
 }

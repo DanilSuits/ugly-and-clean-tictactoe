@@ -8,7 +8,7 @@ public class MoveGroup {
 	private ArrayList<Move> allMoves;
 	private Move bestMove;
 
-	public MoveGroup(boolean reporting) {
+	public MoveGroup() {
 		allMoves = new ArrayList<Move>();
 	}
 

@@ -8,11 +8,11 @@ public class BaseSeriesMethodTestFixture extends TestCase {
 	private static final int MAX_MOVES_POSSIBLE = 48;
 	protected LegacyGame oldGame;
 	protected int result;
-	public boolean reporting = false;
 
 	protected int drawTotal;
 	public int newGameTotal;
 	public int oldGameWinTotal;
+	private boolean reporting;
 	protected static final int MAIN_LEVEL = 0;
 
 	/*

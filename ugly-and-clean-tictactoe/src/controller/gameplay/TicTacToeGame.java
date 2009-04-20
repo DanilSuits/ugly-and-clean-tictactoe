@@ -58,13 +58,13 @@ public class TicTacToeGame {
 
 	public void makeOurMove() {
 		if (noWinnerYet()) {
-			int position = makeMove(true);
+			int position = makeMove();
 			markMove(position, Board.COMPUTER_PLAYER_MARK);
 		}
 	}
 
-	public int makeMove(boolean reporting) {
-		int movePosition = strategy.makeMove(reporting);
+	public int makeMove() {
+		int movePosition = strategy.makeMove();
 		gameState.setLastMove(movePosition);
 		return movePosition;
 	}

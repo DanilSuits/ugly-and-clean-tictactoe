@@ -15,6 +15,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	private BigDecimal oldGamePercentage;
 	private BigDecimal drawPercentage;
 	private int averageMovesPerGame;
+	private boolean reporting;
 
 	@Override
 	protected void setUp() throws Exception {
@@ -158,7 +159,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 
 	private int newGameMakesAMove(int computerPosition) {
 		newGame.setBoard(oldGame.gameBoard[0]);
-		int position = newGame.makeMove(reporting);
+		int position = newGame.makeMove();
 
 		takePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
 
