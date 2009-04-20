@@ -7,12 +7,15 @@ What you'll need for this series of exercises:
 
 Detailed Instructions:
 
-Unzip and import this project into Eclipse. This Eclipse project consists of two different implementations of the same 10 x 10, first-to-5 TicTacToe game: an older, 
+This Eclipse project consists of two different implementations of the same 10 x 10, first-to-5 TicTacToe game: an older, 
 legacy version, and a newer, mostly-test-driven replacement. Below we ask you to compare and learn about the two games, and to make some specific changes to the newer one. 
 
 First, make a copy of this ReadMe file and respond to questions below in-line. 
 
 NOTE: You need not spend more than 2 hours on this entire exercise, though you can feel free to spend as much time at it as you like. It can be a fun codebase to play in. 
+
+NOTE: It is perfectly alright for you to stop after you are done with Exercise One (A) and Exercise One (B).  Those two can easily consume two hours. IF YOU HAVE MORE TIME TO SPEND, 
+then feel free to continue to Exercise Two, but YOU ARE NOT OBLIGATED to do so. :)
 
 IMPORTANT: When you make changes to the code, please insert "//TODO" tag comments that label your changes with your name or 
 initials and the date, to make it easy for us to find them without your assistance. We can then find your changes easily in the Eclipse "tasks" view; which saves us time. 
@@ -52,14 +55,14 @@ Exercise One (B):
   -- Spend no more than about 45 minutes trying to test-drive this change, and then verify it manually by running the applet. 
   
   Write a few notes about what you've learned about the differences between the two games by writing just this much code, and doing this much analysis and comparison. 
+  
+*****   IF YOU HAVE USED UP TWO HOURS BY THIS POINT, feel free to stop here. If you have more time and are learning or having fun, feel free to continue. Think of it as extra credit.
  
 Exercise Two:
 This game is a just a TicTacToe game. In the related game called Pente, a pair of contiguous "stones" (marks) are removed if 
 they are blocked on each end by opposing player's stones (marks). (You can read more about Pente here:   http://en.wikipedia.org/wiki/Pente )
  
- In this next exercise, first consider how you would do it with the legacy game. Write a few notes about how you might either test=drive this or just hack it into place. 
- 
- Next, actually test-drive the change in the test-driven codebase:
+ In this next exercise, actually test-drive the change in the test-driven codebase:
   -- Test-drive the ability to "happen upon" an 'XOO-, where "-" is an empty spot' pattern, where you are X's and the other player is O's. 
   -- Test-drive the ability to opportunistically create a 'XOOX' pattern, and then remove the two opposing player's 'OO's? 
   -- Finally, verify the new behavior manually with the applet. 
