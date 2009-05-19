@@ -190,7 +190,7 @@ public class ShadowPositionFinder {
 	}
 
 	private GroupOfDirectionalBoardPositionLists getAllIndexListGroups() {
-		DirectionalBoardPositionsListFactory listFactory = new DirectionalBoardPositionsListFactory();
+		DirectionalBoardPositionsListFactory listFactory = new DirectionalBoardPositionsListFactory(Board.HUMAN_PLAYER_MARK);
 		GroupOfDirectionalBoardPositionLists allIndexLists = listFactory.getAllIndexLists();
 		return allIndexLists;
 	}

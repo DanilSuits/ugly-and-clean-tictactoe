@@ -38,7 +38,7 @@ public class IndexListFactoryTests extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		listFactory = new DirectionalBoardPositionsListFactory();
+		listFactory = new DirectionalBoardPositionsListFactory(Board.HUMAN_PLAYER_MARK);
 	}
 
 	public void testReturnsAllRowIndices() throws Exception {
@@ -65,7 +65,7 @@ public class IndexListFactoryTests extends TestCase {
 			throws Exception {
 		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
 		GroupOfDirectionalBoardPositionLists diagonalDownGroup = listFactory
-				.getIndexDiagonalDownsWithPentaRoom(listGroup);
+				.getIndexDiagonalDowns(listGroup);
 
 		assertEquals(Board.MAX_DIAGONAL_DOWNS_WITH_PENTA_ROOM,
 				diagonalDownGroup.size());

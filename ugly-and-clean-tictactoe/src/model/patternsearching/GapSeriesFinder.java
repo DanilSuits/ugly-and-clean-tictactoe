@@ -13,7 +13,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	private SeriesSize expectedSize;
 
 	public GapSeriesFinder(Board board) {
-		super(board);
+		super(board, Board.HUMAN_PLAYER_MARK);
 	}
 
 	protected ISeries searchIndexListForSeriesOfSize(

@@ -12,10 +12,10 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	private int playerMark;
 	private ISeries seriesFound;
 
-	public SeriesFinder(Board board) {
+	public SeriesFinder(Board board, int playerMark) {
 		this.board = board;
 
-		DirectionalBoardPositionsListFactory factory = new DirectionalBoardPositionsListFactory();
+		DirectionalBoardPositionsListFactory factory = new DirectionalBoardPositionsListFactory(playerMark);
 		penteRoomVerifier = new PenteRoomVerifier(board);
 		listGroup = factory.getAllIndexLists();
 	}

@@ -15,7 +15,7 @@ public class SeriesFinderTests extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		board = new Board();
-		seriesFinder = new SeriesFinder(board);
+		seriesFinder = new SeriesFinder(board, Board.HUMAN_PLAYER_MARK);
 		board.setPosition(5, 1, Board.HUMAN_PLAYER_MARK);
 		board.setPosition(5, 2, Board.HUMAN_PLAYER_MARK);
 		board.setPosition(5, 3, Board.HUMAN_PLAYER_MARK);

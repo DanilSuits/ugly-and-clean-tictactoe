@@ -98,7 +98,7 @@ public class ExampleStrategy implements IStrategy {
 				message));
 		
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.NINE,
+				.getAlternateBlockingPositionForHumanWithSeries(), MoveScore.NINE,
 				message));
 	}
 
@@ -106,10 +106,9 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Tessera-blocking position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FOUR,
-						Board.HUMAN_PLAYER_MARK), MoveScore.NINE, message));
+				.getBestBlockingPositionForHumanWithSeriesOfSize(SeriesSize.FOUR), MoveScore.NINE, message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.NINE,
+				.getAlternateBlockingPositionForHumanWithSeries(), MoveScore.NINE,
 				message));
 	}
 
@@ -121,18 +120,17 @@ public class ExampleStrategy implements IStrategy {
 						SeriesSize.FIVE, Board.COMPUTER_PLAYER_MARK), MoveScore.TEN,
 						message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
+				.getAlternateBlockingPositionForComputerWithSeries(), MoveScore.TEN,
 				message));
-	}
+		}
 
 	private void gatherTesseraCappingMoves(MoveGroup moveGroup) {
 		String message;
 		message = "Tessera-capping position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FOUR,
-						Board.COMPUTER_PLAYER_MARK), MoveScore.TEN, message));
+				.getBestBlockingPositionForComputerWithSeriesOfSize(SeriesSize.FOUR), MoveScore.TEN, message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
+				.getAlternateBlockingPositionForComputerWithSeries(), MoveScore.TEN,
 				message));
 	}
 
@@ -140,10 +138,9 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Penta-capping position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.FIVE,
-						Board.COMPUTER_PLAYER_MARK), MoveScore.TEN, message));
+				.getBestBlockingPositionForComputerWithSeriesOfSize(SeriesSize.FIVE), MoveScore.TEN, message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.TEN,
+				.getAlternateBlockingPositionForComputerWithSeries(), MoveScore.TEN,
 				message));
 	}
 
@@ -154,7 +151,7 @@ public class ExampleStrategy implements IStrategy {
 				SeriesSize.FOUR, Board.COMPUTER_PLAYER_MARK), MoveScore.SEVEN,
 				message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.SEVEN,
+				.getAlternateBlockingPositionForHumanWithSeries(), MoveScore.SEVEN,
 				message));
 	}
 
@@ -162,10 +159,9 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Tria-capping position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.THREE,
-						Board.COMPUTER_PLAYER_MARK), MoveScore.SEVEN, message));
+				.getBestBlockingPositionForComputerWithSeriesOfSize(SeriesSize.THREE), MoveScore.SEVEN, message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.SEVEN,
+				.getAlternateBlockingPositionForComputerWithSeries(), MoveScore.SEVEN,
 				message));
 	}
 
@@ -176,7 +172,7 @@ public class ExampleStrategy implements IStrategy {
 				SeriesSize.FOUR, Board.HUMAN_PLAYER_MARK), MoveScore.EIGHT,
 				message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.EIGHT,
+				.getAlternateBlockingPositionForHumanWithSeries(), MoveScore.EIGHT,
 				message));
 	}
 
@@ -184,10 +180,9 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Tria-blocking position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.THREE,
-						Board.HUMAN_PLAYER_MARK), MoveScore.EIGHT, message));
+				.getBestBlockingPositionForHumanWithSeriesOfSize(SeriesSize.THREE), MoveScore.EIGHT, message));
 		moveGroup.add(new Move(patternFinder
-				.getAlternateBlockingPositionForSeries(), MoveScore.EIGHT,
+				.getAlternateBlockingPositionForHumanWithSeries(), MoveScore.EIGHT,
 				message));
 	}
 
@@ -195,8 +190,7 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Pair-capping position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.TWO,
-						Board.COMPUTER_PLAYER_MARK), MoveScore.FIVE, message));
+				.getBestBlockingPositionForComputerWithSeriesOfSize(SeriesSize.TWO), MoveScore.FIVE, message));
 	}
 
 	private void gatherTriaGapFillingMoves(MoveGroup moveGroup) {
@@ -211,8 +205,7 @@ public class ExampleStrategy implements IStrategy {
 		String message;
 		message = "Pair-blocking position: ";
 		moveGroup.add(new Move(patternFinder
-				.getBestBlockingPositionForSeriesOfSize(SeriesSize.TWO,
-						Board.HUMAN_PLAYER_MARK), MoveScore.SIX, message));
+				.getBestBlockingPositionForHumanWithSeriesOfSize(SeriesSize.TWO), MoveScore.SIX, message));
 	}
 
 	private void gatherTriaGapBlockingMoves(MoveGroup moveGroup) {

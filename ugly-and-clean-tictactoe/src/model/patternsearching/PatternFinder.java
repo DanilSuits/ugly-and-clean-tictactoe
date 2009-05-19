@@ -6,13 +6,15 @@ import model.gamestate.Board.SeriesSize;
 public class PatternFinder {
 	private RandomPositionFinder randomPositionFinder;
 	private ShadowPositionFinder shadowFinder;
-	private SeriesFinder seriesFinder;
+	private SeriesFinder humanSeriesFinder;
+	private SeriesFinder computerSeriesFinder;
 	private GapSeriesFinder gapSeriesFinder;
 
 	public PatternFinder(Board board) {
 		randomPositionFinder = new RandomPositionFinder(board);
 		shadowFinder = new ShadowPositionFinder(board);
-		seriesFinder = new SeriesFinder(board);
+		humanSeriesFinder = new SeriesFinder(board, Board.HUMAN_PLAYER_MARK);
+		computerSeriesFinder = new SeriesFinder(board, Board.COMPUTER_PLAYER_MARK);
 		gapSeriesFinder = new GapSeriesFinder(board);
 	}
 
@@ -29,14 +31,22 @@ public class PatternFinder {
 		return randomPositionFinder.findRandomEmptyPosition();
 	}
 
-	public int getBestBlockingPositionForSeriesOfSize(SeriesSize size,
-			int playerMark) {
-		return seriesFinder.getBestBlockingPositionForSeriesOfSize(size,
-				playerMark);
+	public int getBestBlockingPositionForHumanWithSeriesOfSize(SeriesSize size) {
+		return humanSeriesFinder.getBestBlockingPositionForSeriesOfSize(size,
+				Board.HUMAN_PLAYER_MARK);
 	}
 
-	public int getAlternateBlockingPositionForSeries() {
-		return seriesFinder.getAlternatePosition();
+	public int getBestBlockingPositionForComputerWithSeriesOfSize(SeriesSize size) {
+		return computerSeriesFinder.getBestBlockingPositionForSeriesOfSize(size,
+				Board.COMPUTER_PLAYER_MARK);
+	}
+
+	public int getAlternateBlockingPositionForHumanWithSeries() {
+		return humanSeriesFinder.getAlternatePosition();
+	}
+
+	public int getAlternateBlockingPositionForComputerWithSeries() {
+		return computerSeriesFinder.getAlternatePosition();
 	}
 
 	public int getGapForGapSeriesOfSize(SeriesSize size, int playerMark) {
@@ -45,6 +55,6 @@ public class PatternFinder {
 	}
 
 	public boolean canFindSeriesOfSize(SeriesSize size, int playerMark) {
-		return seriesFinder.containsSeriesOfSize(size, playerMark);
+		return humanSeriesFinder.containsSeriesOfSize(size, playerMark);
 	}
 }
