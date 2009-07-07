@@ -46,14 +46,15 @@ You can learn more about the new game by looking at and running the unit tests i
  set to play the two games against each other 200 times. 
   -- What does running this TestCase tell you about the old and new games? 
   
-Exercise One (A):  SPEND NO MORE THAN 20 MINUTES ON THIS PART :)
-  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to continue to win if they get 5 in a row, while the computer must now get 6 in a row to win?   
-  -- Spend no more than about 20 minutes trying to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
-
-Exercise One (B):
+Exercise One (A):
   -- In the new TicTacToeGame, what would it take to enable the human player to win if they get 5 in a row, while the computer must get 6 in a row?   
   -- Spend no more than about 45 minutes trying to test-drive this change, and then verify it manually by running the applet. 
   
+Exercise One (B):  SPEND NO MORE THAN 20 MINUTES ON THIS PART. SERIOUSLY. :)
+  -- NOTE: This first exercise is mostly about READING code, not writing it. Don't let yourself get sucked too far into LegacyGame.java.  
+  -- In the old legacyGame TicTacToeGame, what would it take to enable the human player to continue to win if they get 5 in a row, while the computer must now get 6 in a row to win?   
+  -- Spend no more than about 20 minutes trying to hack this into place, with or without test-driving or unit tests, verifying manually with the applet. 
+
   Write a few notes about what you've learned about the differences between the two games by writing just this much code, and doing this much analysis and comparison. 
   
 *****   IF YOU HAVE USED UP TWO HOURS BY THIS POINT, feel free to stop here. If you have more time and are learning or having fun, feel free to continue. Think of it as extra credit.
