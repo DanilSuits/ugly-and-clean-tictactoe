@@ -42,7 +42,7 @@ You can learn more about the new game by looking at and running the unit tests i
  -- What do the unit tests tell you about the new game?
  -- What do you like and not like about any of these TestCases and test methods? 
  
- You can run the old game against the new game using the single test method in the OldGameAgainstNewGameTests TestCase in manualTests.manualTests. This test method is currently 
+ You can run the old game against the new game using the single test method in the OldGameAgainstNewGameTests TestCase in acceptanceTests.oldagainstnewgame. This test method is currently 
  set to play the two games against each other 200 times. 
   -- What does running this TestCase tell you about the old and new games? 
   
