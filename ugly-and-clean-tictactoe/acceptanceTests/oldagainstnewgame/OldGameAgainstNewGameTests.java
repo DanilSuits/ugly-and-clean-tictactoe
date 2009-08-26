@@ -14,8 +14,14 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	private BigDecimal newGamePercentage;
 	private BigDecimal oldGamePercentage;
 	private BigDecimal drawPercentage;
+	
 	private int averageMovesPerGame;
 	private boolean reporting;
+	private long endTime;
+	private long durationInSeconds;
+	private Long longMinutes;
+	private int minutes;
+	private int secondsRemainder;
 
 	@Override
 	protected void setUp() throws Exception {
@@ -31,26 +37,36 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	// one place changed!
 	public void testNewGameBeatsOrDrawsOldGameMostOfTheTime() throws Exception {
 		reporting = false;
-		int totalGamesPlayed = 200;
-
+		int totalGamesPlayed = 1000;
 		long startTime = System.currentTimeMillis();
 
-		for (int i = 0; i < totalGamesPlayed; i++) {
-			playNewGameAgainstOldGame();
-			if (reporting)
-				System.out
-						.println("************************************************ STARTING OVER ***********************************************");
-			oldGame = null;
-			oldGame = new LegacyGame();
-			newGame = null;
-			newGame = new TicTacToeGame(new ExampleStrategy(), new StubView());
-		}
-		reportResults(totalGamesPlayed, startTime);
+		playThisManyGames(totalGamesPlayed);
+		prepareResults(totalGamesPlayed, startTime);
+		printResults(totalGamesPlayed);
+		assertNewGameMostlyWon();
+	}
 
+	private void assertNewGameMostlyWon() {
 		assertTrue(averageMovesPerGame > 15);
 		assertTrue(newGamePercentage.floatValue() > 40);
 		assertTrue(oldGamePercentage.floatValue() < 18);
-		assertTrue(drawPercentage.floatValue() > 35);
+		assertTrue(drawPercentage.floatValue() > 30);
+	}
+
+	private void playThisManyGames(int totalGamesPlayed) {
+		for (int i = 0; i < totalGamesPlayed; i++) {
+			playNewGameAgainstOldGame();
+			if (reporting)
+				System.out.println("************************************************ STARTING OVER ***********************************************");
+			initGames();
+		}
+	}
+
+	private void initGames() {
+		oldGame = null;
+		oldGame = new LegacyGame();
+		newGame = null;
+		newGame = new TicTacToeGame(new ExampleStrategy(), new StubView());
 	}
 
 	private void playNewGameAgainstOldGame() {
@@ -68,13 +84,15 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		determineWinner();
 	}
 
-	private void reportResults(int totalGamesPlayed, long startTime) {
-		long endTime = System.currentTimeMillis();
-		long durationInSeconds = (endTime - startTime) / 1000;
-		Long longMinutes = durationInSeconds / 60;
-		int minutes = longMinutes.intValue();
-		int secondsRemainder = new Long(durationInSeconds % 60).intValue();
+	private void prepareResults(int totalGamesPlayed, long startTime) {
+		endTime = System.currentTimeMillis();
+		durationInSeconds = (endTime - startTime) / 1000;
+		longMinutes = durationInSeconds / 60;
+		minutes = longMinutes.intValue();
+		secondsRemainder = new Long(durationInSeconds % 60).intValue();
+	}
 
+	private void printResults(int totalGamesPlayed) {
 		System.out.println();
 		System.out.println("Total duration = " + minutes + " minutes and "
 				+ secondsRemainder + " seconds.");
@@ -135,16 +153,10 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	}
 
 	private int newGameMakesMove(int newGamePosition, int oldGamePosition) {
-		if (!oldGameWon()) {
-			newGamePosition = newGameMakesAMove(oldGamePosition);
-		}
-		if (reporting)
-			System.out.println(oldGame
-					.returnPrintableBoard(LegacyGame.CR_CHARACTER));
-
-		if (newGameWon()) {
-			setGameStateToNewGameWon();
-		}
+		if (!oldGameWon()) newGamePosition = newGameMakesAMove(oldGamePosition); 
+		if (reporting) System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
+		if (newGameWon()) setGameStateToNewGameWon();
+			
 		return newGamePosition;
 	}
 
@@ -160,7 +172,6 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	private int newGameMakesAMove(int computerPosition) {
 		newGame.setBoard(oldGame.gameBoard[0]);
 		int position = newGame.makeMove();
-
 		takePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
 
 		return position;
