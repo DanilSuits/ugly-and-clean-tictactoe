@@ -33,8 +33,8 @@ public class BaseSeriesMethodTestFixture extends TestCase {
 	public void testKeepJunitHappy() throws Exception {
 	}
 
-	protected void takePosition(int position, int player, int boardLevel) {
-		oldGame.gameBoard[boardLevel][position] = player;
+	protected void takeOldGamePosition(int position, int playerMark, int boardLevel) {
+		oldGame.gameBoard[boardLevel][position] = playerMark;
 	}
 
 	protected void setGameStateToNewGameWon() {
@@ -59,7 +59,7 @@ public class BaseSeriesMethodTestFixture extends TestCase {
 		int x = (playerPosition % Board.MAX_COLUMNS);
 		int y = (playerPosition - x) / Board.MAX_COLUMNS;
 		int respondingPosition = oldGame.makeComputerMove(x, y, reporting);
-		takePosition(respondingPosition, LegacyGame.ZERO_MARK_FOR_COMPUTER,
+		takeOldGamePosition(respondingPosition, LegacyGame.ZERO_MARK_FOR_COMPUTER,
 				MAIN_LEVEL);
 		return respondingPosition;
 	}
@@ -69,7 +69,7 @@ public class BaseSeriesMethodTestFixture extends TestCase {
 		int y = (computerPosition - x) / Board.MAX_ROWS;
 		int position = oldGame.makeComputerMove(x, y, reporting);
 
-		takePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
+		takeOldGamePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
 		return position;
 	}
 

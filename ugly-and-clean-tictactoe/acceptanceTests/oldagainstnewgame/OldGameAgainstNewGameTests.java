@@ -40,7 +40,7 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		int totalGamesPlayed = 1000;
 		long startTime = System.currentTimeMillis();
 
-		playThisManyGames(totalGamesPlayed);
+		playThisManyGamesOneAgainstTheOther(totalGamesPlayed);
 		prepareResults(totalGamesPlayed, startTime);
 		printResults(totalGamesPlayed);
 		assertNewGameMostlyWon();
@@ -48,12 +48,12 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 
 	private void assertNewGameMostlyWon() {
 		assertTrue(averageMovesPerGame > 15);
-		assertTrue(newGamePercentage.floatValue() > 40);
-		assertTrue(oldGamePercentage.floatValue() < 18);
-		assertTrue(drawPercentage.floatValue() > 30);
+		assertTrue(newGamePercentage.floatValue() > 45);
+		assertTrue(oldGamePercentage.floatValue() < 16);
+		assertTrue(drawPercentage.floatValue() > 35);
 	}
 
-	private void playThisManyGames(int totalGamesPlayed) {
+	private void playThisManyGamesOneAgainstTheOther(int totalGamesPlayed) {
 		for (int i = 0; i < totalGamesPlayed; i++) {
 			playNewGameAgainstOldGame();
 			if (reporting)
@@ -74,14 +74,17 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 		oldGame.moveNumber++;
 		int oldGamePosition = 0;
 
-		while ((oldGame.gameState < 2)
-				&& (theMaximumNumberOfMovesHasNotBeenTaken())) {
+		while (oldGameReportsNoOneHasWonYet() && (theMaximumNumberOfMovesHasNotBeenTaken())) {
 			oldGame.moveNumber++;
 			newGamePosition = newGameMakesMove(newGamePosition, oldGamePosition);
 			oldGamePosition = oldGameMakesMove(newGamePosition, oldGamePosition);
 		}
 
 		determineWinner();
+	}
+
+	private boolean oldGameReportsNoOneHasWonYet() {
+		return (oldGame.gameState < 2);
 	}
 
 	private void prepareResults(int totalGamesPlayed, long startTime) {
@@ -140,41 +143,37 @@ public class OldGameAgainstNewGameTests extends BaseSeriesMethodTestFixture {
 	}
 
 	private int oldGameMakesMove(int newGamePosition, int oldGamePosition) {
-		if (!newGameWon())
-			oldGamePosition = oldGameMakesAMove(newGamePosition);
+		if (!newGameWon()) oldGamePosition = oldGameMakesAMove(newGamePosition);
 		if (reporting)
-			System.out.println(oldGame
-					.returnPrintableBoard(LegacyGame.CR_CHARACTER));
+			System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
 
-		if (oldGameWon()) {
-			setGameStateToOldGameWon();
-		}
+		if (oldGameWon()) setGameStateToOldGameWon();
 		return oldGamePosition;
 	}
 
 	private int newGameMakesMove(int newGamePosition, int oldGamePosition) {
-		if (!oldGameWon()) newGamePosition = newGameMakesAMove(oldGamePosition); 
+		if (!oldGameWon()) newGamePosition = newGameMakesAMove(); 
 		if (reporting) System.out.println(oldGame.returnPrintableBoard(LegacyGame.CR_CHARACTER));
 		if (newGameWon()) setGameStateToNewGameWon();
 			
 		return newGamePosition;
 	}
 
-	private int oldGameMakesAMove(int playerPosition) {
-		int x = (playerPosition % Board.MAX_COLUMNS);
-		int y = (playerPosition - x) / Board.MAX_ROWS;
+	private int oldGameMakesAMove(int opponentPosition) {
+		int x = (opponentPosition % Board.MAX_COLUMNS);
+		int y = (opponentPosition - x) / Board.MAX_ROWS;
 		int respondingPosition = oldGame.makeComputerMove(x, y, reporting);
-		takePosition(respondingPosition, LegacyGame.ZERO_MARK_FOR_COMPUTER,
+		takeOldGamePosition(respondingPosition, LegacyGame.ZERO_MARK_FOR_COMPUTER,
 				MAIN_LEVEL);
 		return respondingPosition;
 	}
 
-	private int newGameMakesAMove(int computerPosition) {
+	private int newGameMakesAMove() {
 		newGame.setBoard(oldGame.gameBoard[0]);
-		int position = newGame.makeMove();
-		takePosition(position, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
+		int respondingPosition = newGame.makeMove();
+		takeOldGamePosition(respondingPosition, LegacyGame.X_MARK_FOR_PLAYER, MAIN_LEVEL);
 
-		return position;
+		return respondingPosition;
 	}
 
 }
