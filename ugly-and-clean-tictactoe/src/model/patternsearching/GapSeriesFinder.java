@@ -4,7 +4,7 @@ import model.gamestate.Board;
 import model.gamestate.Board.SeriesSize;
 import model.patterns.GapSeries;
 import model.patterns.ISeries;
-import model.patterns.DirectionalBoardPositionsList;
+import model.patterns.DirectionalCorridors;
 import model.patterns.Series;
 
 public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
@@ -17,7 +17,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	}
 
 	protected ISeries searchIndexListForSeriesOfSize(
-			DirectionalBoardPositionsList currentIndexList, SeriesSize expectedSize, int playerMark) {
+			DirectionalCorridors currentIndexList, SeriesSize expectedSize, int playerMark) {
 		this.playerMark = playerMark;
 		this.seriesFound = new Series();
 		this.expectedSize = expectedSize;
@@ -31,7 +31,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 		return seriesFound;
 	}
 
-	private ISeries addSeriesIfItQualifies(DirectionalBoardPositionsList candidateIndexList) {
+	private ISeries addSeriesIfItQualifies(DirectionalCorridors candidateIndexList) {
 		int firstPosition = candidateIndexList.get(0);
 		int lastPosition = candidateIndexList
 				.get(candidateIndexList.size() - 1);
@@ -43,7 +43,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	}
 
 	private ISeries qualifyingGapSeries(SeriesSize expectedSize,
-			DirectionalBoardPositionsList candidateIndexList) {
+			DirectionalCorridors candidateIndexList) {
 		if ((candidateListContainsBoardMark(candidateIndexList, Board.EMPTY) && (!candidateListContainsBoardMark(
 				candidateIndexList, board.getOppositePlayerMarkFor(playerMark))))) {
 
@@ -54,16 +54,16 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	}
 
 	private ISeries createGapSeriesIfIndexListIsOfExpectedSize(
-			DirectionalBoardPositionsList candidateIndexList) {
+			DirectionalCorridors candidateIndexList) {
 		if (candidateIndexList.size() == expectedSize.getSize()) {
 			seriesFound = createGapSeries(candidateIndexList);
 		}
 		return seriesFound;
 	}
 
-	protected DirectionalBoardPositionsList getNextCandidateListOfExpectedSize(
-			DirectionalBoardPositionsList currentIndexList, int currentStartingPositionIndex) {
-		DirectionalBoardPositionsList candidateList = new DirectionalBoardPositionsList();
+	protected DirectionalCorridors getNextCandidateListOfExpectedSize(
+			DirectionalCorridors currentIndexList, int currentStartingPositionIndex) {
+		DirectionalCorridors candidateList = new DirectionalCorridors();
 		for (int j = currentStartingPositionIndex; j < currentStartingPositionIndex
 				+ expectedSize.getSize(); j++) {
 			candidateList.add(currentIndexList.get(j));
@@ -77,7 +77,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 				&& positionEquals(lastPosition, playerMark);
 	}
 
-	protected ISeries createGapSeries(DirectionalBoardPositionsList candidateList) {
+	protected ISeries createGapSeries(DirectionalCorridors candidateList) {
 		GapSeries series = new GapSeries();
 
 		for (int i = 0; i < candidateList.size(); i++) {
@@ -94,7 +94,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 		}
 	}
 
-	protected boolean candidateListContainsBoardMark(DirectionalBoardPositionsList candidateList,
+	protected boolean candidateListContainsBoardMark(DirectionalCorridors candidateList,
 			int mark) {
 		for (int positionIndex = 0; positionIndex < candidateList.size(); positionIndex++) {
 			if (positionContainsBoardMark(positionIndex, mark, candidateList)) {
@@ -105,7 +105,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	}
 
 	private boolean positionContainsBoardMark(int positionIndex, int mark,
-			DirectionalBoardPositionsList candidateList) {
+			DirectionalCorridors candidateList) {
 		return board.getPosition(candidateList.get(positionIndex)) == mark;
 	}
 
@@ -115,7 +115,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 	}
 
 	protected ISeries addBlockingPositionsTo(ISeries currentSeries,
-			DirectionalBoardPositionsList currentList) {
+			DirectionalCorridors currentList) {
 		currentSeries.setBlockingPositionsDependingOnNumberOfEmptySpaces();
 
 		return currentSeries;

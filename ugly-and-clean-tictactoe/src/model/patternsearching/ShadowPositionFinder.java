@@ -3,9 +3,9 @@ package model.patternsearching;
 import java.util.ArrayList;
 
 import model.gamestate.Board;
-import model.patterns.DirectionalBoardPositionsList;
-import model.patterns.DirectionalBoardPositionsListFactory;
-import model.patterns.GroupOfDirectionalBoardPositionLists;
+import model.patterns.DirectionalCorridors;
+import model.patterns.DirectionalCorridorsFactory;
+import model.patterns.GroupOfDirectionalCorridors;
 import model.patterns.ShadowPosition;
 
 public class ShadowPositionFinder {
@@ -92,7 +92,7 @@ public class ShadowPositionFinder {
 			ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
-				DirectionalBoardPositionsListFactory.DIAGONAL_UP_BEFORE_INCREMENT, thisPlayerMark);
+				DirectionalCorridorsFactory.DIAGONAL_UP_BEFORE_INCREMENT, thisPlayerMark);
 		if (position.getPosition() != -1) {
 			potentialPositions.add(position);
 		}
@@ -103,7 +103,7 @@ public class ShadowPositionFinder {
 			ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
-				DirectionalBoardPositionsListFactory.DIAGONAL_DOWN_BEFORE_INCREMENT, thisPlayerMark);
+				DirectionalCorridorsFactory.DIAGONAL_DOWN_BEFORE_INCREMENT, thisPlayerMark);
 		if (position.getPosition() != -1) {
 			potentialPositions.add(position);
 		}
@@ -113,7 +113,7 @@ public class ShadowPositionFinder {
 			int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
-				DirectionalBoardPositionsListFactory.DIAGONAL_UP_AFTER_INCREMENT, thisPlayerMark);
+				DirectionalCorridorsFactory.DIAGONAL_UP_AFTER_INCREMENT, thisPlayerMark);
 		if (position.getPosition() != -1) {
 			potentialPositions.add(position);
 		}
@@ -123,7 +123,7 @@ public class ShadowPositionFinder {
 			int thisPlayerMark, ArrayList<ShadowPosition> potentialPositions) {
 		ShadowPosition position;
 		position = getPositionNearTheirPosition(oppositePlayerPosition,
-				DirectionalBoardPositionsListFactory.DIAGONAL_DOWN_AFTER_INCREMENT, thisPlayerMark);
+				DirectionalCorridorsFactory.DIAGONAL_DOWN_AFTER_INCREMENT, thisPlayerMark);
 		if (position.getPosition() != -1) {
 			potentialPositions.add(position);
 		}
@@ -165,10 +165,10 @@ public class ShadowPositionFinder {
 			int thisPlayerMark) {
 		this.thisPlayerMark = thisPlayerMark;
 		int openLinesThroughThisPoint = 0;
-		GroupOfDirectionalBoardPositionLists allIndexLists = getAllIndexListGroups();
+		GroupOfDirectionalCorridors allIndexLists = getAllIndexListGroups();
 
 		for (int i = 0; i < allIndexLists.size(); i++) {
-			DirectionalBoardPositionsList currentIndexList = allIndexLists.get(i);
+			DirectionalCorridors currentIndexList = allIndexLists.get(i);
 
 			openLinesThroughThisPoint = incrementOpenLinesCountIfThisLineIsOpen(
 					trialPosition, openLinesThroughThisPoint, currentIndexList);
@@ -179,7 +179,7 @@ public class ShadowPositionFinder {
 
 	private int incrementOpenLinesCountIfThisLineIsOpen(
 			ShadowPosition trialPosition, int openLinesThroughThisPoint,
-			DirectionalBoardPositionsList list) {
+			DirectionalCorridors list) {
 		if (list.contains(trialPosition.getPosition())) {
 			if (penteRoomVerifier.hasPenteRoomForPlayerMark(list, trialPosition
 					.getPosition(), thisPlayerMark)) {
@@ -189,9 +189,9 @@ public class ShadowPositionFinder {
 		return openLinesThroughThisPoint;
 	}
 
-	private GroupOfDirectionalBoardPositionLists getAllIndexListGroups() {
-		DirectionalBoardPositionsListFactory listFactory = new DirectionalBoardPositionsListFactory(Board.HUMAN_PLAYER_MARK);
-		GroupOfDirectionalBoardPositionLists allIndexLists = listFactory.getAllIndexLists();
+	private GroupOfDirectionalCorridors getAllIndexListGroups() {
+		DirectionalCorridorsFactory listFactory = new DirectionalCorridorsFactory(Board.HUMAN_PLAYER_MARK);
+		GroupOfDirectionalCorridors allIndexLists = listFactory.getAllIndexLists();
 		return allIndexLists;
 	}
 

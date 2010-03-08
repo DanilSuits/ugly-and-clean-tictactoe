@@ -3,13 +3,13 @@ package model.patternsearching;
 import model.gamestate.Board;
 import model.gamestate.Board.SeriesSize;
 import model.patterns.ISeries;
-import model.patterns.DirectionalBoardPositionsList;
-import model.patterns.GroupOfDirectionalBoardPositionLists;
+import model.patterns.DirectionalCorridors;
+import model.patterns.GroupOfDirectionalCorridors;
 import model.patterns.SeriesGroup;
 
 public abstract class BaseSeriesFinder {
 	protected Board board;
-	protected GroupOfDirectionalBoardPositionLists listGroup;
+	protected GroupOfDirectionalCorridors listGroup;
 	protected PenteRoomVerifier penteRoomVerifier;
 	protected int bestPosition;
 	protected int alternatePosition;
@@ -23,7 +23,7 @@ public abstract class BaseSeriesFinder {
 		allSeriesFound = new SeriesGroup(board);
 
 		for (int listGroupIndex = 0; listGroupIndex < listGroup.size(); listGroupIndex++) {
-			DirectionalBoardPositionsList currentIndexList = listGroup.get(listGroupIndex);
+			DirectionalCorridors currentIndexList = listGroup.get(listGroupIndex);
 			addAllQualifyingSeriesInThisIndexList(size, playerMark,
 					currentIndexList);
 		}
@@ -32,7 +32,7 @@ public abstract class BaseSeriesFinder {
 	}
 
 	private void addAllQualifyingSeriesInThisIndexList(SeriesSize size,
-			int playerMark, DirectionalBoardPositionsList currentIndexList) {
+			int playerMark, DirectionalCorridors currentIndexList) {
 		ISeries currentSeries;
 		currentSeries = searchIndexListForSeriesOfSize(currentIndexList, size,
 				playerMark);
@@ -41,7 +41,7 @@ public abstract class BaseSeriesFinder {
 	}
 
 	public SeriesGroup addQualifyingSeries(int playerMark,
-			ISeries currentSeries, DirectionalBoardPositionsList currentIndexList) {
+			ISeries currentSeries, DirectionalCorridors currentIndexList) {
 		if (currentSeries.size() != 0) {
 			addSeriesWithPenteRoom(playerMark, currentSeries, currentIndexList);
 		}
@@ -50,7 +50,7 @@ public abstract class BaseSeriesFinder {
 	}
 
 	private void addSeriesWithPenteRoom(int playerMark, ISeries currentSeries,
-			DirectionalBoardPositionsList currentIndexList) {
+			DirectionalCorridors currentIndexList) {
 		if (penteRoomVerifier.hasPenteRoom(currentSeries, currentIndexList,
 				playerMark)) {
 			allSeriesFound.add(currentSeries);
@@ -60,14 +60,14 @@ public abstract class BaseSeriesFinder {
 	}
 
 	protected abstract ISeries searchIndexListForSeriesOfSize(
-			DirectionalBoardPositionsList currentIndexList, SeriesSize size, int playerMark);
+			DirectionalCorridors currentIndexList, SeriesSize size, int playerMark);
 
 	protected abstract ISeries addBlockingPositionsTo(ISeries currentSeries,
-			DirectionalBoardPositionsList currentIndexList);
+			DirectionalCorridors currentIndexList);
 
 	protected abstract int getBlockingPositionAfter(
-			int lastSeriesPositionListIndex, DirectionalBoardPositionsList currentList);
+			int lastSeriesPositionListIndex, DirectionalCorridors currentList);
 
 	protected abstract int getBlockingPositionBefore(
-			int startingPositionListIndex, DirectionalBoardPositionsList currentList);
+			int startingPositionListIndex, DirectionalCorridors currentList);
 }

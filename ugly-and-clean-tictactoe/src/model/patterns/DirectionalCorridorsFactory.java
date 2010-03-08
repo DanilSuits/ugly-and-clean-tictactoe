@@ -2,7 +2,7 @@ package model.patterns;
 
 import model.gamestate.Board;
 
-public class DirectionalBoardPositionsListFactory {
+public class DirectionalCorridorsFactory {
 	private int winningSeriesSize;
 
 	private int getFirstSquareOfLastLowerDiagonalUp() {
@@ -21,7 +21,7 @@ public class DirectionalBoardPositionsListFactory {
 		return (Board.MAX_ROWS - winningSeriesSize) * Board.MAX_COLUMNS;
 	}
 	
-	public DirectionalBoardPositionsListFactory(int playerMark) {
+	public DirectionalCorridorsFactory(int playerMark) {
 		if (playerMark == Board.HUMAN_PLAYER_MARK)
 			this.winningSeriesSize = 5;
 		else if (playerMark == Board.COMPUTER_PLAYER_MARK)
@@ -39,8 +39,8 @@ public class DirectionalBoardPositionsListFactory {
 	public static final int HORIZONTAL_AFTER_INCREMENT = 1;
 	public static final int HORIZONTAL_BEFORE_INCREMENT = -1;
 
-	public GroupOfDirectionalBoardPositionLists getAllIndexLists() {
-		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
+	public GroupOfDirectionalCorridors getAllIndexLists() {
+		GroupOfDirectionalCorridors listGroup = new GroupOfDirectionalCorridors();
 
 		listGroup = getIndexHorizontalRows(listGroup);
 		listGroup = getIndexVerticalColumns(listGroup);
@@ -50,9 +50,9 @@ public class DirectionalBoardPositionsListFactory {
 		return listGroup;
 	}
 
-	public GroupOfDirectionalBoardPositionLists getIndexHorizontalRows(GroupOfDirectionalBoardPositionLists listGroup) {
+	public GroupOfDirectionalCorridors getIndexHorizontalRows(GroupOfDirectionalCorridors listGroup) {
 		for (int row = 0; row < Board.MAX_ROWS; row++) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisRow(row, list);
 			listGroup.add(list);
@@ -60,7 +60,7 @@ public class DirectionalBoardPositionsListFactory {
 		return listGroup;
 	}
 
-	private void getAllSpacesInThisRow(int row, DirectionalBoardPositionsList list) {
+	private void getAllSpacesInThisRow(int row, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < Board.MAX_COLUMNS; space++) {
 			spaceIndex = row * Board.MAX_COLUMNS + space;
@@ -69,9 +69,9 @@ public class DirectionalBoardPositionsListFactory {
 		}
 	}
 
-	public GroupOfDirectionalBoardPositionLists getIndexVerticalColumns(GroupOfDirectionalBoardPositionLists listGroup) {
+	public GroupOfDirectionalCorridors getIndexVerticalColumns(GroupOfDirectionalCorridors listGroup) {
 		for (int column = 0; column < Board.MAX_COLUMNS; column++) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisColumn(column, list);
 			listGroup.add(list);
@@ -80,7 +80,7 @@ public class DirectionalBoardPositionsListFactory {
 		return listGroup;
 	}
 
-	private void getAllSpacesInThisColumn(int column, DirectionalBoardPositionsList list) {
+	private void getAllSpacesInThisColumn(int column, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < Board.MAX_BOARD_SIZE; space = space	+ Board.MAX_ROWS) {
 			spaceIndex = column + space;
@@ -89,15 +89,15 @@ public class DirectionalBoardPositionsListFactory {
 		}
 	}
 
-	public GroupOfDirectionalBoardPositionLists getIndexDiagonalDowns(
-			GroupOfDirectionalBoardPositionLists listGroup) {
+	public GroupOfDirectionalCorridors getIndexDiagonalDowns(
+			GroupOfDirectionalCorridors listGroup) {
 		assembleLowerBoardDiagonalDowns(listGroup);
 		assembleUpperBoardDiagonalDowns(listGroup);
 
 		return listGroup;
 	}
 
-	public GroupOfDirectionalBoardPositionLists getIndexDiagonalUps(GroupOfDirectionalBoardPositionLists listGroup) {
+	public GroupOfDirectionalCorridors getIndexDiagonalUps(GroupOfDirectionalCorridors listGroup) {
 		assembleUpperBoardDiagonalUps(listGroup);
 		assembleLowerBoardDiagonalUps(listGroup);
 
@@ -105,11 +105,11 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private void assembleUpperBoardDiagonalDowns(
-			GroupOfDirectionalBoardPositionLists listGroup) {
+			GroupOfDirectionalCorridors listGroup) {
 		int currentDiagonalDownSize = 9;
 
 		for (int diagonalGroup = 1; diagonalGroup < (Board.MAX_COLUMNS-winningSeriesSize+1); diagonalGroup++) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisUpperBoardDiagonalDown(currentDiagonalDownSize,
 					diagonalGroup, list);
@@ -119,7 +119,7 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private void getAllSpacesInThisUpperBoardDiagonalDown(
-			int currentDiagonalDownSize, int diagonalGroup, DirectionalBoardPositionsList list) {
+			int currentDiagonalDownSize, int diagonalGroup, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < currentDiagonalDownSize; space++) {
 			spaceIndex = diagonalGroup
@@ -130,12 +130,12 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private int assembleLowerBoardDiagonalDowns(
-			GroupOfDirectionalBoardPositionLists listGroup) {
+			GroupOfDirectionalCorridors listGroup) {
 		int currentDiagonalDownSize = winningSeriesSize;
 
 		for (int diagonalGroup = getFirstSquareOfFirstLowerDiagonalDown(); diagonalGroup > -1; diagonalGroup = diagonalGroup
 				- VERTICAL_AFTER_INCREMENT) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisLowerBoardDiagonalDown(currentDiagonalDownSize,
 					diagonalGroup, list);
@@ -147,7 +147,7 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private void getAllSpacesInThisLowerBoardDiagonalDown(
-			int currentDiagonalDownSize, int diagonalGroup, DirectionalBoardPositionsList list) {
+			int currentDiagonalDownSize, int diagonalGroup, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < currentDiagonalDownSize; space++) {
 			spaceIndex = diagonalGroup + (space * DIAGONAL_DOWN_AFTER_INCREMENT);
@@ -156,11 +156,11 @@ public class DirectionalBoardPositionsListFactory {
 		}
 	}
 
-	private void assembleLowerBoardDiagonalUps(GroupOfDirectionalBoardPositionLists listGroup) {
+	private void assembleLowerBoardDiagonalUps(GroupOfDirectionalCorridors listGroup) {
 		int currentDiagonalUpSize = 9;
 
 		for (int diagonalGroup = getFirstSquareOfFirstLowerDiagonalUp(); diagonalGroup <= getFirstSquareOfLastLowerDiagonalUp(); diagonalGroup++) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisLowerBoardDiagonalUp(currentDiagonalUpSize,
 					diagonalGroup, list);
@@ -171,7 +171,7 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private void getAllSpacesInThisLowerBoardDiagonalUp(
-			int currentDiagonalUpSize, int diagonalGroup, DirectionalBoardPositionsList list) {
+			int currentDiagonalUpSize, int diagonalGroup, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < currentDiagonalUpSize; space++) {
 			spaceIndex = diagonalGroup - (space * DIAGONAL_UP_BEFORE_INCREMENT);
@@ -180,12 +180,12 @@ public class DirectionalBoardPositionsListFactory {
 		}
 	}
 
-	private int assembleUpperBoardDiagonalUps(GroupOfDirectionalBoardPositionLists listGroup) {
+	private int assembleUpperBoardDiagonalUps(GroupOfDirectionalCorridors listGroup) {
 		int currentDiagonalUpSize = winningSeriesSize;
 
 		for (int diagonalGroup = getFirstSquareOfFirstUpperDiagonalUp(); diagonalGroup < Board.MAX_BOARD_SIZE; diagonalGroup = diagonalGroup
 				+ VERTICAL_AFTER_INCREMENT) {
-			DirectionalBoardPositionsList list = new DirectionalBoardPositionsList();
+			DirectionalCorridors list = new DirectionalCorridors();
 
 			getAllSpacesInThisUpperBoardDiagonalUp(currentDiagonalUpSize,
 					diagonalGroup, list);
@@ -196,7 +196,7 @@ public class DirectionalBoardPositionsListFactory {
 	}
 
 	private void getAllSpacesInThisUpperBoardDiagonalUp(
-			int currentDiagonalUpSize, int diagonalGroup, DirectionalBoardPositionsList list) {
+			int currentDiagonalUpSize, int diagonalGroup, DirectionalCorridors list) {
 		int spaceIndex;
 		for (int space = 0; space < currentDiagonalUpSize; space++) {
 			spaceIndex = diagonalGroup - (space * DIAGONAL_UP_BEFORE_INCREMENT);

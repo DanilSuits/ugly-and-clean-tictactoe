@@ -2,12 +2,12 @@ package model.patternsearching;
 
 import junit.framework.TestCase;
 import model.gamestate.Board;
-import model.patterns.DirectionalBoardPositionsList;
+import model.patterns.DirectionalCorridors;
 
 public class PenteRoomVerifierTests extends TestCase {
 	private PenteRoomVerifier verifier;
 	private Board board;
-	private DirectionalBoardPositionsList list;
+	private DirectionalCorridors list;
 
 	@Override
 	protected void setUp() throws Exception {
@@ -15,7 +15,7 @@ public class PenteRoomVerifierTests extends TestCase {
 
 		board = new Board();
 		verifier = new PenteRoomVerifier(board);
-		list = new DirectionalBoardPositionsList();
+		list = new DirectionalCorridors();
 		list.add(50);
 		list.add(51);
 		list.add(52);

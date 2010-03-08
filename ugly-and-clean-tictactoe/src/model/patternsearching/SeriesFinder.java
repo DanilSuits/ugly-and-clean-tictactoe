@@ -3,8 +3,8 @@ package model.patternsearching;
 import model.gamestate.Board;
 import model.gamestate.Board.SeriesSize;
 import model.patterns.ISeries;
-import model.patterns.DirectionalBoardPositionsList;
-import model.patterns.DirectionalBoardPositionsListFactory;
+import model.patterns.DirectionalCorridors;
+import model.patterns.DirectionalCorridorsFactory;
 import model.patterns.Series;
 import model.patterns.SeriesGroup;
 
@@ -15,13 +15,13 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	public SeriesFinder(Board board, int playerMark) {
 		this.board = board;
 
-		DirectionalBoardPositionsListFactory factory = new DirectionalBoardPositionsListFactory(playerMark);
+		DirectionalCorridorsFactory factory = new DirectionalCorridorsFactory(playerMark);
 		penteRoomVerifier = new PenteRoomVerifier(board);
 		listGroup = factory.getAllIndexLists();
 	}
 
 	protected ISeries searchIndexListForSeriesOfSize(
-			DirectionalBoardPositionsList currentIndexList, SeriesSize expectedSize, int playerMark) {
+			DirectionalCorridors currentIndexList, SeriesSize expectedSize, int playerMark) {
 		resetSeriesFound();
 		this.playerMark = playerMark;
 
@@ -80,7 +80,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	}
 
 	protected ISeries addBlockingPositionsTo(ISeries currentSeries,
-			DirectionalBoardPositionsList currentList) {
+			DirectionalCorridors currentList) {
 		int startingPositionListIndex = currentList.getIndexFor(currentSeries
 				.get(0));
 		int lastSeriesPositionListIndex = currentList.getIndexFor(currentSeries
@@ -97,7 +97,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		return currentSeries;
 	}
 
-	protected int getBlockingPositionAfter(int index, DirectionalBoardPositionsList currentList) {
+	protected int getBlockingPositionAfter(int index, DirectionalCorridors currentList) {
 		if (index < currentList.size() - 1) {
 			int position = currentList.get(index + 1);
 
@@ -107,7 +107,7 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		return -1;
 	}
 
-	protected int getBlockingPositionBefore(int index, DirectionalBoardPositionsList currentList) {
+	protected int getBlockingPositionBefore(int index, DirectionalCorridors currentList) {
 		if (index > 0) {
 			int position = currentList.get(index - 1);
 

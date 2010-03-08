@@ -2,10 +2,10 @@ package model.patterns;
 
 import java.util.ArrayList;
 
-public class DirectionalBoardPositionsList {
+public class DirectionalCorridors {
 	ArrayList<Integer> indexList;
 
-	public DirectionalBoardPositionsList() {
+	public DirectionalCorridors() {
 		indexList = new ArrayList<Integer>();
 	}
 

@@ -7,14 +7,14 @@ import org.junit.Test;
 
 public class DirectionalBoardPositionsListFactoryTests extends TestCase {
 
-	private DirectionalBoardPositionsListFactory playerFactory;
-	private DirectionalBoardPositionsListFactory computerFactory;
-	private GroupOfDirectionalBoardPositionLists listGroup;
+	private DirectionalCorridorsFactory playerFactory;
+	private DirectionalCorridorsFactory computerFactory;
+	private GroupOfDirectionalCorridors listGroup;
 	
 	public void setUp() throws Exception {
-		playerFactory = new DirectionalBoardPositionsListFactory(Board.HUMAN_PLAYER_MARK);
-		computerFactory = new DirectionalBoardPositionsListFactory(Board.COMPUTER_PLAYER_MARK);
-		listGroup = new GroupOfDirectionalBoardPositionLists();
+		playerFactory = new DirectionalCorridorsFactory(Board.HUMAN_PLAYER_MARK);
+		computerFactory = new DirectionalCorridorsFactory(Board.COMPUTER_PLAYER_MARK);
+		listGroup = new GroupOfDirectionalCorridors();
 	}
 
 	public void testNumber_of_rows_should_be_number_of_board_rows() {

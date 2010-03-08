@@ -2,9 +2,9 @@ package model.patternsearching;
 
 import junit.framework.TestCase;
 import model.gamestate.Board;
-import model.patterns.DirectionalBoardPositionsList;
-import model.patterns.DirectionalBoardPositionsListFactory;
-import model.patterns.GroupOfDirectionalBoardPositionLists;
+import model.patterns.DirectionalCorridors;
+import model.patterns.DirectionalCorridorsFactory;
+import model.patterns.GroupOfDirectionalCorridors;
 
 public class IndexListFactoryTests extends TestCase {
 
@@ -33,69 +33,69 @@ public class IndexListFactoryTests extends TestCase {
 	 * 94 85 76 67 58 49 95 86 77 68 59
 	 */
 
-	private DirectionalBoardPositionsListFactory listFactory;
+	private DirectionalCorridorsFactory listFactory;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		listFactory = new DirectionalBoardPositionsListFactory(Board.HUMAN_PLAYER_MARK);
+		listFactory = new DirectionalCorridorsFactory(Board.HUMAN_PLAYER_MARK);
 	}
 
 	public void testReturnsAllRowIndices() throws Exception {
-		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
-		GroupOfDirectionalBoardPositionLists horizontalGroup = listFactory
+		GroupOfDirectionalCorridors listGroup = new GroupOfDirectionalCorridors();
+		GroupOfDirectionalCorridors horizontalGroup = listFactory
 				.getIndexHorizontalRows(listGroup);
 
 		assertEquals(Board.MAX_ROWS, horizontalGroup.size());
-		DirectionalBoardPositionsList firstRow = horizontalGroup.get(0);
+		DirectionalCorridors firstRow = horizontalGroup.get(0);
 		assertEquals(9, firstRow.get(9));
 	}
 
 	public void testReturnsAllColumnIndices() throws Exception {
-		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
-		GroupOfDirectionalBoardPositionLists verticalGroup = listFactory
+		GroupOfDirectionalCorridors listGroup = new GroupOfDirectionalCorridors();
+		GroupOfDirectionalCorridors verticalGroup = listFactory
 				.getIndexVerticalColumns(listGroup);
 
 		assertEquals(Board.MAX_COLUMNS, verticalGroup.size());
-		DirectionalBoardPositionsList firstColumn = verticalGroup.get(0);
+		DirectionalCorridors firstColumn = verticalGroup.get(0);
 		assertEquals(Board.getSingleCoordValueFor(9, 0), firstColumn.get(9));
 	}
 
 	public void testReturnsAllDiagonalDownsWithPentaRoomIndices()
 			throws Exception {
-		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
-		GroupOfDirectionalBoardPositionLists diagonalDownGroup = listFactory
+		GroupOfDirectionalCorridors listGroup = new GroupOfDirectionalCorridors();
+		GroupOfDirectionalCorridors diagonalDownGroup = listFactory
 				.getIndexDiagonalDowns(listGroup);
 
 		assertEquals(Board.MAX_DIAGONAL_DOWNS_WITH_PENTA_ROOM,
 				diagonalDownGroup.size());
-		DirectionalBoardPositionsList firstDiagonalDown = diagonalDownGroup.get(0);
+		DirectionalCorridors firstDiagonalDown = diagonalDownGroup.get(0);
 		assertEquals(Board.getSingleCoordValueFor(5, 0), firstDiagonalDown
 				.get(0));
 
-		DirectionalBoardPositionsList fithDiagonalDown = diagonalDownGroup.get(5);
+		DirectionalCorridors fithDiagonalDown = diagonalDownGroup.get(5);
 		assertEquals(Board.getSingleCoordValueFor(4, 4), fithDiagonalDown
 				.get(4));
 	}
 
 	public void testReturnsAllDiagonalUpsWithPentaRoomIndices()
 			throws Exception {
-		GroupOfDirectionalBoardPositionLists listGroup = new GroupOfDirectionalBoardPositionLists();
-		GroupOfDirectionalBoardPositionLists diagonalUpGroup = listFactory
+		GroupOfDirectionalCorridors listGroup = new GroupOfDirectionalCorridors();
+		GroupOfDirectionalCorridors diagonalUpGroup = listFactory
 				.getIndexDiagonalUps(listGroup);
 
 		assertEquals(Board.MAX_DIAGONAL_DOWNS_WITH_PENTA_ROOM, diagonalUpGroup
 				.size());
-		DirectionalBoardPositionsList firstDiagonalUp = diagonalUpGroup.get(0);
+		DirectionalCorridors firstDiagonalUp = diagonalUpGroup.get(0);
 		assertEquals(Board.getSingleCoordValueFor(4, 0), firstDiagonalUp.get(0));
 
-		DirectionalBoardPositionsList fithDiagonalDown = diagonalUpGroup.get(5);
+		DirectionalCorridors fithDiagonalDown = diagonalUpGroup.get(5);
 		assertEquals(Board.getSingleCoordValueFor(5, 4), fithDiagonalDown
 				.get(4));
 	}
 
 	public void testReturnsAllIndexGroupsForAllDirections() throws Exception {
-		GroupOfDirectionalBoardPositionLists listGroup = listFactory.getAllIndexLists();
+		GroupOfDirectionalCorridors listGroup = listFactory.getAllIndexLists();
 
 		assertEquals(Board.getSingleCoordValueFor(4, 2), listGroup.size());
 	}
