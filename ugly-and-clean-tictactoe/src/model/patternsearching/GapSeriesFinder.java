@@ -7,7 +7,7 @@ import model.patterns.ISeries;
 import model.patterns.DirectionalCorridors;
 import model.patterns.Series;
 
-public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
+public class GapSeriesFinder extends ContiguousSeriesFinder implements ISeriesFinder {
 	private int playerMark;
 	private ISeries seriesFound;
 	private SeriesSize expectedSize;
@@ -16,7 +16,7 @@ public class GapSeriesFinder extends SeriesFinder implements ISeriesFinder {
 		super(board, Board.HUMAN_PLAYER_MARK);
 	}
 
-	protected ISeries searchIndexListForSeriesOfSize(
+	protected ISeries searchCorridorForSeriesOfSize(
 			DirectionalCorridors currentIndexList, SeriesSize expectedSize, int playerMark) {
 		this.playerMark = playerMark;
 		this.seriesFound = new Series();

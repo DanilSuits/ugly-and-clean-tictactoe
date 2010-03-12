@@ -8,11 +8,11 @@ import model.patterns.DirectionalCorridorsFactory;
 import model.patterns.Series;
 import model.patterns.SeriesGroup;
 
-public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
+public class ContiguousSeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	private int playerMark;
 	private ISeries seriesFound;
 
-	public SeriesFinder(Board board, int playerMark) {
+	public ContiguousSeriesFinder(Board board, int playerMark) {
 		this.board = board;
 
 		DirectionalCorridorsFactory factory = new DirectionalCorridorsFactory(playerMark);
@@ -20,30 +20,34 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 		listGroup = factory.getAllIndexLists();
 	}
 
-	protected ISeries searchIndexListForSeriesOfSize(
-			DirectionalCorridors currentIndexList, SeriesSize expectedSize, int playerMark) {
-		resetSeriesFound();
+	protected ISeries searchCorridorForSeriesOfSize(
+			DirectionalCorridors currentCorridor, SeriesSize expectedSize, int playerMark) {
 		this.playerMark = playerMark;
-
-		for (int i = 0; i < currentIndexList.size(); i++) {
-			int position = currentIndexList.get(i);
-			int positionContents = board.getPosition(position);
-
-			if (thisPositionIsPartOfSeries(positionContents)) {
-				seriesFound.add(position);
-			}
-
-			if (weFoundLastPositionInExpectedSeries(expectedSize,
-					positionContents)) {
-				break;
-			}
-		}
-
-		if (ourSeriesSoFarIsNotBigEnough(expectedSize, seriesFound)) {
-			resetSeriesFound();
-		}
+		
+		resetSeriesFound();
+		lookForSeriesOfExpectedSize(currentCorridor, expectedSize);
+		if (ourSeriesSoFarIsNotBigEnough(expectedSize, seriesFound)) resetSeriesFound();
 
 		return seriesFound;
+	}
+
+	private void lookForSeriesOfExpectedSize(DirectionalCorridors currentCorridor,
+			SeriesSize expectedSize) {
+		for (int i = 0; i < currentCorridor.size(); i++) {
+			int positionContents = getPositionIfPartOfSeries(currentCorridor, i);
+
+			if (weFoundLastPositionInExpectedSeries(expectedSize, positionContents)) break;
+		}
+	}
+
+	private int getPositionIfPartOfSeries(DirectionalCorridors currentCorridor, int i) {
+		int position = currentCorridor.get(i);
+		int positionContents = board.getPosition(position);
+
+		if (thisPositionIsPartOfSeries(positionContents)) {
+			seriesFound.add(position);
+		}
+		return positionContents;
 	}
 
 	private boolean weFoundLastPositionInExpectedSeries(
@@ -78,6 +82,8 @@ public class SeriesFinder extends BaseSeriesFinder implements ISeriesFinder {
 	private boolean thisPositionIsPartOfSeries(int positionContents) {
 		return positionContents == playerMark;
 	}
+	
+	//TODO Class boundary? What do YOU think?
 
 	protected ISeries addBlockingPositionsTo(ISeries currentSeries,
 			DirectionalCorridors currentList) {

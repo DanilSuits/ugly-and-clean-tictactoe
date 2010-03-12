@@ -34,7 +34,7 @@ public abstract class BaseSeriesFinder {
 	private void addAllQualifyingSeriesInThisIndexList(SeriesSize size,
 			int playerMark, DirectionalCorridors currentIndexList) {
 		ISeries currentSeries;
-		currentSeries = searchIndexListForSeriesOfSize(currentIndexList, size,
+		currentSeries = searchCorridorForSeriesOfSize(currentIndexList, size,
 				playerMark);
 		allSeriesFound = addQualifyingSeries(playerMark, currentSeries,
 				currentIndexList);
@@ -59,7 +59,7 @@ public abstract class BaseSeriesFinder {
 		}
 	}
 
-	protected abstract ISeries searchIndexListForSeriesOfSize(
+	protected abstract ISeries searchCorridorForSeriesOfSize(
 			DirectionalCorridors currentIndexList, SeriesSize size, int playerMark);
 
 	protected abstract ISeries addBlockingPositionsTo(ISeries currentSeries,

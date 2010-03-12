@@ -6,15 +6,15 @@ import model.gamestate.Board.SeriesSize;
 public class PatternFinder {
 	private RandomPositionFinder randomPositionFinder;
 	private ShadowPositionFinder shadowFinder;
-	private SeriesFinder humanSeriesFinder;
-	private SeriesFinder computerSeriesFinder;
+	private ContiguousSeriesFinder humanSeriesFinder;
+	private ContiguousSeriesFinder computerSeriesFinder;
 	private GapSeriesFinder gapSeriesFinder;
 
 	public PatternFinder(Board board) {
 		randomPositionFinder = new RandomPositionFinder(board);
 		shadowFinder = new ShadowPositionFinder(board);
-		humanSeriesFinder = new SeriesFinder(board, Board.HUMAN_PLAYER_MARK);
-		computerSeriesFinder = new SeriesFinder(board, Board.COMPUTER_PLAYER_MARK);
+		humanSeriesFinder = new ContiguousSeriesFinder(board, Board.HUMAN_PLAYER_MARK);
+		computerSeriesFinder = new ContiguousSeriesFinder(board, Board.COMPUTER_PLAYER_MARK);
 		gapSeriesFinder = new GapSeriesFinder(board);
 	}
 
