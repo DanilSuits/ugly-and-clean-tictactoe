@@ -5,7 +5,7 @@ import model.gamestate.Board;
 
 import org.junit.Test;
 
-public class DirectionalBoardPositionsListFactoryTests extends TestCase {
+public class DirectionalCorridorsFactoryTests extends TestCase {
 
 	private DirectionalCorridorsFactory playerFactory;
 	private DirectionalCorridorsFactory computerFactory;
