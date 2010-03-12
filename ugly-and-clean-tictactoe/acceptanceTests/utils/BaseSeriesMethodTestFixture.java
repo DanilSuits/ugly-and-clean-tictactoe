@@ -1,4 +1,4 @@
-package baseManualTestUtils;
+package utils;
 
 import junit.framework.TestCase;
 import legacyGame.LegacyGame;

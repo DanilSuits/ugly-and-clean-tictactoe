@@ -1,10 +1,11 @@
-package oldagainstnewgame;
+package harness.twogame;
 
 import java.math.BigDecimal;
+
+import utils.BaseSeriesMethodTestFixture;
 import legacyGame.LegacyGame;
 import model.gamestate.Board;
 import model.strategy.ExampleStrategy;
-import baseManualTestUtils.BaseSeriesMethodTestFixture;
 import controller.gameplay.StubView;
 import controller.gameplay.TicTacToeGame;
 
