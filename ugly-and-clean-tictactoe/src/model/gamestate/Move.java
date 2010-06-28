@@ -21,10 +21,6 @@ public class Move {
 		return score.getScore();
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
 	public boolean isValidMove() {
 		return getPosition() != -1;
 	}
